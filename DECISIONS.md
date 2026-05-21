@@ -21,15 +21,3 @@ pdfplumber is the strongest tool for structured table extraction from text-based
 PDFs are processed offline, structured JSON is committed to the repo, and SvelteKit reads it at build time. The migration path to a database is explicit: `+page.ts` becomes `+page.server.ts`, the static import becomes a DB query, and the Svelte component is untouched. Chosen deliberately to make the migration a hands-on learning exercise rather than something to avoid.
 
 ---
-
-## 004 — Display only in v1, no user input
-
-v1 surfaces only what is directly extractable from CompareFirst Product Summary PDFs. Surrender charge percentage is in the document and displayable as-is. Surrender value estimation requires a premium amount and assumed return rate — that belongs in a later phase once the extraction layer is validated.
-
----
-
-## 005 — One product first before generalising
-
-Extraction patterns (section headings, table structure) may differ across products and insurers. Validating against one document end-to-end before building a normalisation layer avoids designing abstractions on top of unverified assumptions.
-
----
