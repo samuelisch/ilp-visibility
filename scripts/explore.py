@@ -1,7 +1,7 @@
 from pathlib import Path
 import pdfplumber
 
-PDF_PATH = Path(__file__).resolve().parent.parent/"pdfs"/"WA_Sum_201106386R_ESI5P_Jul2025.pdf"
+PDF_PATH = Path(__file__).resolve().parent.parent/"pdfs"/"aia"/"temp_path"
 
 with pdfplumber.open(PDF_PATH) as pdf:
   print(len(pdf.pages))
