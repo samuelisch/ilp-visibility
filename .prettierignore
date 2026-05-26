@@ -1,0 +1,12 @@
+**/node_modules/**
+**/dist/**
+**/build/**
+**/coverage/**
+**/.vite/**
+scripts/venv/**
+pnpm-lock.yaml
+.starter-research/**
+pdfs/**
+.agents/**
+.claude/**
+.trunk/**
