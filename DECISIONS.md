@@ -64,3 +64,24 @@ Three additions to the v1 schema, surfaced during the v1 scope stress test:
 
 ---
 
+## 009 — pnpm workspaces monorepo with shared root configs — 2026-05-27
+
+Frontend (React + Vite) and backend (NestJS) live as workspaces under one repo (`/frontend`, `/backend`). The root holds **shared configuration files** — not shared dependencies. Each workspace declares the tools it actually uses; versions are aligned across packages so pnpm dedupes them via the lockfile and the content-addressable store at `node_modules/.pnpm/`.
+
+Shared at root:
+- `tsconfig.base.json` — language-level TS options; each workspace extends and adds environment-specific overrides (module, lib, jsx, decorators)
+- `eslint.config.base.mjs` — JS + TS recommended rules; each workspace imports it and layers framework plugins (React for frontend, NestJS + type-checked rules + Prettier integration for backend)
+- `prettier.config.mjs` + `.prettierignore` — single formatter config for the whole repo (Prettier walks up the tree, no per-package extends needed)
+- Root `package.json` scripts: `pnpm lint / typecheck / build / test / format` fan out via `pnpm -r run X`
+
+Per-workspace (NOT hoisted):
+- Framework runtime deps (React, NestJS) and framework-specific tooling (Vite, Nest CLI, jest)
+- Each workspace's own `eslint.config.*` and `tsconfig.*` extending the root base
+- Shared tools (typescript, eslint, prettier) listed in each workspace's devDeps too — required for binary resolution under pnpm's strict isolation, deduped on disk via the `.pnpm/` store
+
+Decision *not* taken: a `packages/shared/` workspace for FE/BE shared types. Deferred until there's actual data-model code worth sharing.
+
+Trade-off accepted: declaration boilerplate (shared tools listed in multiple `package.json` files) in exchange for strict dependency isolation — each workspace can only import what it declared, preventing phantom deps.
+
+---
+
