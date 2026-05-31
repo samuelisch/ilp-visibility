@@ -7,14 +7,53 @@ datasource db {
   provider = "postgresql"
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+enum SourceType {
+  cash_or_srs
+  cpfis
+}
+
+enum Domicile {
+  sgd
+  usd
+}
+
+enum PremiumAllocationType {
+  single
+  recurring
+  term
+}
+
+enum TermEndBehaviour {
+  stop
+  persist_last
+}
+
+enum ChargeSchedule {
+  perpetual
+  recurring
+  term
+  escalating_n
+}
+
+enum FeeType {
+  account_value
+  annual_premium
+  cumulative_premium_paid
+  notional_premium
+}
+
+enum SurrenderFeeType {
+  account_value
+  cumulative_premium_paid
+}
+
 model policies {
   id                            Int                             @id @default(autoincrement())
   provider_id                   Int
   name                          String
   description                   String
-  source_type                   String
-  domicile                      String
+  source_type                   SourceType
+  domicile                      Domicile
   payment_term_years            Int?
   providers                     providers                       @relation(fields: [provider_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   policy_account_fees           policy_account_fees[]
@@ -34,17 +73,16 @@ model policy_account_fee_terms {
   @@unique([policy_account_fee_id, policy_year], map: "policy_account_fee_terms_unique")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model policy_account_fees {
   id                       Int                        @id @default(autoincrement())
   policy_id                Int
   policy_account_id        Int?
   description              String
-  charge_schedule          String
+  charge_schedule          ChargeSchedule
   active_from_policy_year  Int
-  term_end_behaviour       String?
+  term_end_behaviour       TermEndBehaviour?
   recurring_length         Int?
-  fee_type                 String
+  fee_type                 FeeType
   notional_percentage      Decimal?                   @db.Decimal(5, 2)
   is_percentage_available  Boolean                    @default(true)
   charge_percentage        Decimal?                   @db.Decimal(5, 2)
@@ -75,19 +113,17 @@ model policy_account_surrender_fee_terms {
   @@unique([policy_account_surrender_fee_id, policy_year], map: "policy_account_surrender_fee_terms_unique")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model policy_account_surrender_fees {
   id                                 Int                                  @id(map: "policy_account_surrender_fee_pkey") @default(autoincrement())
   policy_id                          Int
   policy_account_id                  Int?
-  term_end_behaviour                 String
-  fee_type                           String
+  term_end_behaviour                 TermEndBehaviour
+  fee_type                           SurrenderFeeType
   policy_account_surrender_fee_terms policy_account_surrender_fee_terms[]
   policies                           policies                             @relation(fields: [policy_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "policy_account_surrender_fee_policy_id_fkey")
   policy_accounts                    policy_accounts?                     @relation(fields: [policy_account_id, policy_id], references: [id, policy_id], onDelete: NoAction, onUpdate: NoAction, map: "policy_account_surrender_fees_policy_account_fk")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model policy_accounts {
   id                                      Int                                       @id @default(autoincrement())
   policy_id                               Int
@@ -95,8 +131,8 @@ model policy_accounts {
   allocation_from_policy_year             Int
   allocation_till_policy_year             Int?
   premium_charge_percentage               Decimal?                                  @db.Decimal(5, 2)
-  premium_allocation_type                 String
-  term_end_behaviour                      String?
+  premium_allocation_type                 PremiumAllocationType
+  term_end_behaviour                      TermEndBehaviour?
   policy_account_fees                     policy_account_fees[]
   policy_account_premium_allocation_terms policy_account_premium_allocation_terms[]
   policy_account_surrender_fees           policy_account_surrender_fees[]
