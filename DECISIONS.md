@@ -85,3 +85,34 @@ Trade-off accepted: declaration boilerplate (shared tools listed in multiple `pa
 
 ---
 
+## 010 — Raw SQL schema before ORM — 2026-05-29
+
+The v1 data model was implemented as raw `CREATE TABLE` / `ALTER TABLE` statements in `psql` before choosing an ORM. Six tables created: `providers`, `policies`, `policy_accounts`, `policy_account_fees`, `policy_account_fee_terms`, `policy_account_surrender_fees`, `policy_account_surrender_fee_terms`.
+
+Key implementation choices made during schema creation:
+
+- **Integer auto-increment PKs** instead of the conceptual model's string PKs. Simpler for a local-first schema; UUIDs or string IDs can be adopted when the ORM layer is introduced if needed.
+- **Composite FKs for dual-path integrity**: `policy_account_fees` and `policy_account_surrender_fees` use `FOREIGN KEY (policy_account_id, policy_id) REFERENCES policy_accounts(id, policy_id)` to prevent a fee row from referencing an account that belongs to a different policy. PostgreSQL skips the composite FK check when `policy_account_id` is NULL (policy-wide fees), so a standalone `policy_id → policies(id)` FK covers that path.
+- **CHECK constraints enforce conditional nullability**: `charge_percentage` must be NULL when `charge_schedule = 'term'` or `is_percentage_available = false`; `recurring_length` is required for `recurring`, forbidden for `term`/`perpetual`, optional for `escalating_n`; `notional_percentage` is required only when `fee_type = 'notional_premium'`.
+- **Unique constraints on term tables**: `(policy_account_fee_id, policy_year)` and `(policy_account_surrender_fee_id, policy_year)` prevent duplicate year entries.
+
+Trade-off accepted: no migration files yet. The schema lives only in the local Postgres instance. Reproducible DDL scripts or ORM-managed migrations will be needed before the schema can be shared or deployed.
+
+---
+
+## 011 — Collapse SRS and Cash into a single sourceType — 2026-05-29
+
+Cross-provider research (all 10 providers, ~75 products) confirmed that no provider charges different fees for SRS vs Cash funding. The only funding-source fee difference in the dataset is CPF vs non-CPF (0% premium charge for CPFIS on AIA Invest Easy, GE GIA, Prudential InvestGrowth, HSBC Wealth Invest). `Policy.source_type` was changed from `'cash' | 'srs' | 'cpfis'` to `'cash_or_srs' | 'cpfis'`, and `source_type` was added to the composite unique constraint on `policies`.
+
+---
+
+## 012 — Premium charges modeled on PolicyAccount, not PolicyAccountFee — 2026-05-29
+
+Premium charges (the upfront percentage deducted from each premium payment) are economically different from ongoing fees (which erode account value over time). Premium charges reduce what gets invested at the point of payment; ongoing fees are deducted monthly from the account value after growth. Placing both in `PolicyAccountFee` would force the engine to branch on `fee_type` to decide when to apply the charge — an implicit assumption that belongs in the data model, not the engine.
+
+`PolicyAccount` now carries `premium_allocation_type` (`'single'` | `'recurring'` | `'term'`), `premium_charge_percentage` (flat rate, null for term), and `term_end_behaviour`. A new `policy_account_premium_allocation_terms` table stores year-by-year charge rates when the rate varies. This also replaces `recurrence` on `Policy` — the engine infers the payment pattern from the account-level allocation type.
+
+Cross-provider research confirmed that time-varying premium charges appear exclusively on regular premium products (AIA: 5 products, GE: 1, HSBC: 1, NTUC: 1, Prudential: 1). All single premium and top-up charges are flat across the entire dataset.
+
+---
+

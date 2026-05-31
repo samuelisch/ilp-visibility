@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model policies {
+  id                            Int                             @id @default(autoincrement())
+  provider_id                   Int
+  name                          String
+  description                   String
+  source_type                   String
+  domicile                      String
+  payment_term_years            Int?
+  providers                     providers                       @relation(fields: [provider_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  policy_account_fees           policy_account_fees[]
+  policy_account_surrender_fees policy_account_surrender_fees[]
+  policy_accounts               policy_accounts[]
+
+  @@unique([provider_id, name, domicile, description, source_type], map: "policies_provider_name_domicile_source_unique")
+}
+
+model policy_account_fee_terms {
+  id                    Int                 @id @default(autoincrement())
+  policy_account_fee_id Int
+  policy_year           Int
+  charge_percentage     Decimal             @db.Decimal(5, 2)
+  policy_account_fees   policy_account_fees @relation(fields: [policy_account_fee_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([policy_account_fee_id, policy_year], map: "policy_account_fee_terms_unique")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model policy_account_fees {
+  id                       Int                        @id @default(autoincrement())
+  policy_id                Int
+  policy_account_id        Int?
+  description              String
+  charge_schedule          String
+  active_from_policy_year  Int
+  term_end_behaviour       String?
+  recurring_length         Int?
+  fee_type                 String
+  notional_percentage      Decimal?                   @db.Decimal(5, 2)
+  is_percentage_available  Boolean                    @default(true)
+  charge_percentage        Decimal?                   @db.Decimal(5, 2)
+  min_premium              Int?
+  max_premium              Int?
+  policy_account_fee_terms policy_account_fee_terms[]
+  policy_accounts          policy_accounts?           @relation(fields: [policy_account_id, policy_id], references: [id, policy_id], onDelete: NoAction, onUpdate: NoAction, map: "policy_account_fees_account_policy_fkey")
+  policies                 policies                   @relation(fields: [policy_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model policy_account_premium_allocation_terms {
+  id                        Int             @id @default(autoincrement())
+  policy_account_id         Int
+  policy_year               Int
+  premium_charge_percentage Decimal         @db.Decimal(5, 2)
+  policy_accounts           policy_accounts @relation(fields: [policy_account_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([policy_account_id, policy_year], map: "policy_account_premium_allocation_terms_unique")
+}
+
+model policy_account_surrender_fee_terms {
+  id                              Int                           @id @default(autoincrement())
+  policy_account_surrender_fee_id Int
+  policy_year                     Int
+  charge_percentage               Decimal                       @db.Decimal(5, 2)
+  policy_account_surrender_fees   policy_account_surrender_fees @relation(fields: [policy_account_surrender_fee_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "policy_account_surrender_fee__policy_account_surrender_fee_fkey")
+
+  @@unique([policy_account_surrender_fee_id, policy_year], map: "policy_account_surrender_fee_terms_unique")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model policy_account_surrender_fees {
+  id                                 Int                                  @id(map: "policy_account_surrender_fee_pkey") @default(autoincrement())
+  policy_id                          Int
+  policy_account_id                  Int?
+  term_end_behaviour                 String
+  fee_type                           String
+  policy_account_surrender_fee_terms policy_account_surrender_fee_terms[]
+  policies                           policies                             @relation(fields: [policy_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "policy_account_surrender_fee_policy_id_fkey")
+  policy_accounts                    policy_accounts?                     @relation(fields: [policy_account_id, policy_id], references: [id, policy_id], onDelete: NoAction, onUpdate: NoAction, map: "policy_account_surrender_fees_policy_account_fk")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model policy_accounts {
+  id                                      Int                                       @id @default(autoincrement())
+  policy_id                               Int
+  description                             String
+  allocation_from_policy_year             Int
+  allocation_till_policy_year             Int?
+  premium_charge_percentage               Decimal?                                  @db.Decimal(5, 2)
+  premium_allocation_type                 String
+  term_end_behaviour                      String?
+  policy_account_fees                     policy_account_fees[]
+  policy_account_premium_allocation_terms policy_account_premium_allocation_terms[]
+  policy_account_surrender_fees           policy_account_surrender_fees[]
+  policies                                policies                                  @relation(fields: [policy_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([id, policy_id], map: "policy_policy_account_unique")
+}
+
+model providers {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
+  policies policies[]
+}
