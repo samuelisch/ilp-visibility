@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
-import { PrismaClient } from '../src/generated/prisma/client';
 import {
+  PrismaClient,
   ChargeSchedule,
   Domicile,
   FeeType,
@@ -8,7 +8,7 @@ import {
   SourceType,
   SurrenderFeeType,
   TermEndBehaviour,
-} from '../src/generated/prisma/enums';
+} from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import rawSeedData from './seed-data/aia-elite-secure-income-sp.json';
 
