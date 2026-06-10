@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { PolicyService } from './policy.service.js';
 import { Policy } from '../generated/prisma/client.js';
 
@@ -9,5 +9,10 @@ export class PolicyController {
   @Get()
   async findAll(): Promise<Policy[]> {
     return this.policyService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.policyService.findOne(id);
   }
 }
