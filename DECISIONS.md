@@ -136,6 +136,49 @@ For single premium products, fees calculated on the premium amount (e.g. AIA ESI
 
 ---
 
+## 016 — Global PrismaModule instead of per-module PrismaService registration — 2026-06-10
+
+PrismaService was originally registered as a provider inside PolicyModule. As more feature modules are added, each would need to re-register PrismaService, creating multiple instances and duplicating wiring.
+
+Moved to a dedicated `PrismaModule` with `@Global()` decorator, imported once in `AppModule`. PrismaService is declared in `providers` and `exports` — `@Global()` makes it injectable everywhere without explicit imports, but `exports` is still required to expose the provider outside the module. PolicyModule's `providers` array no longer includes PrismaService.
+
+Trade-off: global modules reduce visibility into which modules depend on Prisma. Acceptable because every feature module in this app needs database access — the dependency is universal, not selective.
+
+---
+
+## 017 — Service-level unit tests alongside controller tests — 2026-06-10
+
+Controller tests mock the service and verify HTTP routing + param pass-through. Service tests mock PrismaService and verify query construction (where clauses, include trees) and error handling (NotFoundException). Both test layers are necessary:
+
+- Controller tests catch: wrong HTTP method, missing pipes, param not forwarded
+- Service tests catch: wrong Prisma query shape, missing filters, wrong include nesting, null-check regressions
+
+Convention: one spec file per class (`policy.controller.spec.ts`, `policy.service.spec.ts`), colocated with source. Matches NestJS CLI defaults.
+
+---
+
+## 018 — flatFeeAmount on PolicyAccountFee for flat-dollar charges — 2026-06-11
+
+AIA Pro Lifetime Protector (II) charges a flat S$5/month Policy Fee — not a percentage of any base. The v1 schema only supported percentage-based fees via `chargePercentage`. Added a nullable `flatFeeAmount: Decimal(10, 2)` field to `PolicyAccountFee`. When set, the engine uses the flat dollar amount directly (monthly deduction = `flatFeeAmount`); when null, it uses `chargePercentage` as before.
+
+The two fields are mutually exclusive in practice: a fee row uses either `chargePercentage` (percentage of some base per `feeType`) or `flatFeeAmount` (fixed dollar amount), never both. This is enforced by convention in the seed data, not by a database CHECK constraint — keeping the schema simple since only one AIA product uses flat fees today.
+
+---
+
+## 019 — AIA seed data: interpretation decisions and known limitations — 2026-06-11
+
+Seeded all 16 AIA policy variants (15 new + 1 existing ESI SP). Three interpretation decisions made during seeding:
+
+**PRE Regular Premium paymentTermYears = 5 (inferred).** The Product Summary doesn't explicitly state a limited payment term. Inferred from: premium charge drops to 0% from Year 4 (same pattern as ESI 5 Pay), supplementary charge runs 5 years, premium holiday charge stops after 5+ premiums paid.
+
+**PWE 2.0 Administration Charge: assumed 26–30 entry age (0.24% p.a.).** The charge is age-banded (10 bands from 0.16% to 1.26%) and based on Insured Amount at Issue Date — neither the age-banding nor the "insured amount" base fits the v1 schema. Decision: use the 26–30 age band rate as the default, with `isPercentageAvailable: true` and `chargePercentage: 0.24`. Display layer will show an age-assumption disclaimer. Future: user-selectable age band or age input field.
+
+**PWL Administration Charge: kept as isPercentageAvailable = false.** Rates are only in the policy illustration, not the Product Summary. Display layer shows a disclaimer. Future consideration: accept user-provided rates from their policy illustration and aggregate averages across users.
+
+**APA 3.0 Supplementary Charge timing: policy years used as proxy for premiums paid.** The Product Summary defines the charge cessation trigger as "number of regular premiums paid" rather than calendar years. Under v1's assumption (all premiums paid on time, annual frequency), premiums-paid = policy-years, so `recurringLength` by policy year is correct.
+
+---
+
 ## 012 — Premium charges modeled on PolicyAccount, not PolicyAccountFee — 2026-05-29
 
 Premium charges (the upfront percentage deducted from each premium payment) are economically different from ongoing fees (which erode account value over time). Premium charges reduce what gets invested at the point of payment; ongoing fees are deducted monthly from the account value after growth. Placing both in `PolicyAccountFee` would force the engine to branch on `fee_type` to decide when to apply the charge — an implicit assumption that belongs in the data model, not the engine.

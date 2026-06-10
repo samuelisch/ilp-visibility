@@ -10,7 +10,7 @@ import {
   TermEndBehaviour,
 } from '../src/generated/prisma/client.js';
 import { PrismaPg } from '@prisma/adapter-pg';
-import rawSeedData from './seed-data/aia-elite-secure-income-sp.json' with { type: 'json' };
+import rawSeedData from './seed-data/aia/aia-elite-secure-income-sp.json' with { type: 'json' };
 
 interface SeedFeeTerms {
   policyYear: number;
@@ -27,6 +27,7 @@ interface SeedFee {
   notionalPercentage: number | null;
   isPercentageAvailable: boolean;
   chargePercentage: number | null;
+  flatFeeAmount: number | null;
   minPremium: number | null;
   maxPremium: number | null;
   policyAccountFeeTerms: SeedFeeTerms[];
