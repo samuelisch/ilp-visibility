@@ -5,10 +5,6 @@ import { PolicyController } from './policy.controller.js';
 import { PolicyService } from './policy.service.js';
 import { Domicile, SourceType } from '../generated/prisma/client.js';
 
-vi.mock('../generated/prisma/client.js', () => ({
-  PrismaClient: class {},
-}));
-
 describe('PolicyController', () => {
   let policyController: PolicyController;
   const policyService = {
