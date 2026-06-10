@@ -106,6 +106,36 @@ Cross-provider research (all 10 providers, ~75 products) confirmed that no provi
 
 ---
 
+## 013 — Prisma model naming: uppercase singular with @map — 2026-06-09
+
+Prisma models use TypeScript conventions (uppercase singular: `Policy`, `Provider`, `PolicyAccount`) while Postgres tables stay lowercase plural (`policies`, `providers`, `policy_accounts`). `@@map("table_name")` on models and `@map("column_name")` on fields bridge the two naming worlds. Fields are camelCase in Prisma (`providerId`, `paymentTermYears`) mapping to snake_case columns (`provider_id`, `payment_term_years`).
+
+Relation fields (e.g. `policyAccounts PolicyAccount[]`) don't get `@map` — they're virtual Prisma properties with no underlying column. Only scalar fields that correspond to actual database columns need the mapping.
+
+This is a Prisma-only change — no migration required since the underlying SQL is unchanged.
+
+---
+
+## 014 — Seed data via JSON files + Prisma seed script — 2026-06-09
+
+Seed data lives in JSON files (raw data, no Prisma syntax), read by a TypeScript seed script that builds the Prisma `create` calls. This mirrors the future production flow: the LLM normalisation pipeline will output structured JSON, and an ingestion step will write it to the database. The seed script is a prototype of that ingestion step.
+
+Uses `prisma.*.create()`, not `upsert`. The seed is designed to run once on a fresh database. If run against an already-seeded database, unique constraints will reject duplicates and the script will error — acceptable for v1. Idempotent seeding (upsert / find-or-create) deferred until there's a real re-run use case.
+
+First seed target: AIA Elite Secure Income Single Pay (SP).
+
+---
+
+## 015 — feeType for single premium charges: cumulative_premium_paid, not annual_premium — 2026-06-10
+
+For single premium products, fees calculated on the premium amount (e.g. AIA ESI SP Supplementary Charge: `Annual Rate / 12 × Single Premium`) use `feeType: "cumulative_premium_paid"`, not `"annual_premium"`.
+
+`annual_premium` implies an annualised premium figure — a well-defined concept for regular premium products but ambiguous for single premium products. At year 2+, there is no premium being paid, so the annualised premium could be interpreted as $0 by the engine. `cumulative_premium_paid` sums all premiums paid to date, which for a single premium product equals the single premium every year — no special-casing needed.
+
+`annual_premium` is reserved for regular premium products where the annualised premium is a fixed, unambiguous reference value.
+
+---
+
 ## 012 — Premium charges modeled on PolicyAccount, not PolicyAccountFee — 2026-05-29
 
 Premium charges (the upfront percentage deducted from each premium payment) are economically different from ongoing fees (which erode account value over time). Premium charges reduce what gets invested at the point of payment; ongoing fees are deducted monthly from the account value after growth. Placing both in `PolicyAccountFee` would force the engine to branch on `fee_type` to decide when to apply the charge — an implicit assumption that belongs in the data model, not the engine.
