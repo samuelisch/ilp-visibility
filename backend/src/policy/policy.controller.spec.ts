@@ -1,20 +1,21 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PolicyController } from './policy.controller.js';
 import { PolicyService } from './policy.service.js';
 import { Domicile, SourceType } from '../generated/prisma/client.js';
 
-jest.mock('../generated/prisma/client.js', () => ({
+vi.mock('../generated/prisma/client.js', () => ({
   PrismaClient: class {},
 }));
 
 describe('PolicyController', () => {
   let policyController: PolicyController;
   const policyService = {
-    findAll: jest.fn(),
+    findAll: vi.fn(),
   };
 
   beforeEach(async () => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
 
     const moduleRef: TestingModule = await Test.createTestingModule({
       controllers: [PolicyController],
