@@ -7,6 +7,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "types": ["jest", "node"]
+    "types": ["node"]
   }
 }
