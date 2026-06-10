@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PolicyController } from './policy.controller';
-import { PolicyService } from './policy.service';
-import { Domicile, SourceType } from '@prisma/client';
+import { PolicyController } from './policy.controller.js';
+import { PolicyService } from './policy.service.js';
+import { Domicile, SourceType } from '../generated/prisma/client.js';
 
-jest.mock('@prisma/client', () => ({
+jest.mock('../generated/prisma/client.js', () => ({
   PrismaClient: class {},
 }));
 

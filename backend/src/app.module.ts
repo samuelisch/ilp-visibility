@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { PolicyModule } from './policy/policy.module';
+import { AppController } from './app.controller.js';
+import { AppService } from './app.service.js';
+import { PolicyModule } from './policy/policy.module.js';
 
 @Module({
   imports: [PolicyModule],

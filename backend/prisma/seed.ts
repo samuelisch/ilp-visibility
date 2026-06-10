@@ -8,9 +8,9 @@ import {
   SourceType,
   SurrenderFeeType,
   TermEndBehaviour,
-} from '@prisma/client';
+} from '../src/generated/prisma/client.js';
 import { PrismaPg } from '@prisma/adapter-pg';
-import rawSeedData from './seed-data/aia-elite-secure-income-sp.json';
+import rawSeedData from './seed-data/aia-elite-secure-income-sp.json' with { type: 'json' };
 
 interface SeedFeeTerms {
   policyYear: number;

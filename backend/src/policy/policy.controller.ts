@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-import { PolicyService } from './policy.service';
-import { Policy } from '@prisma/client';
+import { PolicyService } from './policy.service.js';
+import { Policy } from '../generated/prisma/client.js';
 
 @Controller('policies')
 export class PolicyController {
