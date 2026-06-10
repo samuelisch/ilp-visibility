@@ -30,9 +30,7 @@ describe('PolicyService', () => {
     it('should query with no where clause when no filters provided', async () => {
       mockPrisma.policy.findMany.mockResolvedValue(policies);
 
-      const result = await policyService.findAll();
-
-      expect(result).toBe(policies);
+      expect(await policyService.findAll()).toBe(policies);
       expect(mockPrisma.policy.findMany).toHaveBeenCalledWith({
         where: {},
       });
@@ -41,8 +39,7 @@ describe('PolicyService', () => {
     it('should apply case-insensitive contains filter when q is provided', async () => {
       mockPrisma.policy.findMany.mockResolvedValue(policies);
 
-      await policyService.findAll('elite');
-
+      expect(await policyService.findAll('elite')).toBe(policies);
       expect(mockPrisma.policy.findMany).toHaveBeenCalledWith({
         where: {
           name: { contains: 'elite', mode: 'insensitive' },
@@ -53,8 +50,7 @@ describe('PolicyService', () => {
     it('should trim whitespace from q before filtering', async () => {
       mockPrisma.policy.findMany.mockResolvedValue(policies);
 
-      await policyService.findAll('  elite  ');
-
+      expect(await policyService.findAll('  elite  ')).toBe(policies);
       expect(mockPrisma.policy.findMany).toHaveBeenCalledWith({
         where: {
           name: { contains: 'elite', mode: 'insensitive' },
@@ -65,8 +61,7 @@ describe('PolicyService', () => {
     it('should skip name filter when q is whitespace-only', async () => {
       mockPrisma.policy.findMany.mockResolvedValue(policies);
 
-      await policyService.findAll('   ');
-
+      expect(await policyService.findAll('   ')).toBe(policies);
       expect(mockPrisma.policy.findMany).toHaveBeenCalledWith({
         where: {},
       });
@@ -75,8 +70,7 @@ describe('PolicyService', () => {
     it('should apply providerId filter when provider is provided', async () => {
       mockPrisma.policy.findMany.mockResolvedValue(policies);
 
-      await policyService.findAll(undefined, 1);
-
+      expect(await policyService.findAll(undefined, 1)).toBe(policies);
       expect(mockPrisma.policy.findMany).toHaveBeenCalledWith({
         where: {
           providerId: 1,
@@ -87,8 +81,7 @@ describe('PolicyService', () => {
     it('should apply both filters when q and provider are provided', async () => {
       mockPrisma.policy.findMany.mockResolvedValue(policies);
 
-      await policyService.findAll('elite', 1);
-
+      expect(await policyService.findAll('elite', 1)).toBe(policies);
       expect(mockPrisma.policy.findMany).toHaveBeenCalledWith({
         where: {
           name: { contains: 'elite', mode: 'insensitive' },
@@ -100,8 +93,7 @@ describe('PolicyService', () => {
     it('should apply providerId filter when provider is 0', async () => {
       mockPrisma.policy.findMany.mockResolvedValue([]);
 
-      await policyService.findAll(undefined, 0);
-
+      expect(await policyService.findAll(undefined, 0)).toEqual([]);
       expect(mockPrisma.policy.findMany).toHaveBeenCalledWith({
         where: {
           providerId: 0,
