@@ -6,8 +6,14 @@ import { Policy } from '../generated/prisma/client.js';
 export class PolicyService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll(): Promise<Policy[]> {
-    return await this.prisma.policy.findMany();
+  async findAll(q?: string, provider?: number): Promise<Policy[]> {
+    const trimmedQ = q?.trim();
+    return await this.prisma.policy.findMany({
+      where: {
+        ...(trimmedQ && { name: { contains: trimmedQ, mode: 'insensitive' } }),
+        ...(provider !== undefined && { providerId: provider }),
+      },
+    });
   }
 
   async findOne(id: number) {

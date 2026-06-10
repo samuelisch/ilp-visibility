@@ -33,21 +33,44 @@ describe('PolicyController', () => {
   });
 
   describe('findAll', () => {
-    it('should return an array of policies', async () => {
-      const result = [
-        {
-          id: 1,
-          providerId: 1,
-          name: 'policytest',
-          description: 'test',
-          sourceType: 'cash_or_srs' as SourceType,
-          domicile: 'sgd' as Domicile,
-          paymentTermYears: null,
-        },
-      ];
-      policyService.findAll.mockResolvedValue(result);
+    const policies = [
+      {
+        id: 1,
+        providerId: 1,
+        name: 'policytest',
+        description: 'test',
+        sourceType: 'cash_or_srs' as SourceType,
+        domicile: 'sgd' as Domicile,
+        paymentTermYears: null,
+      },
+    ];
 
-      expect(await policyController.findAll()).toBe(result);
+    it('should return all policies when no filters provided', async () => {
+      policyService.findAll.mockResolvedValue(policies);
+
+      expect(await policyController.findAll()).toBe(policies);
+      expect(policyService.findAll).toHaveBeenCalledWith(undefined, undefined);
+    });
+
+    it('should pass q param to service for name search', async () => {
+      policyService.findAll.mockResolvedValue(policies);
+
+      expect(await policyController.findAll('elite')).toBe(policies);
+      expect(policyService.findAll).toHaveBeenCalledWith('elite', undefined);
+    });
+
+    it('should pass provider param to service for provider filtering', async () => {
+      policyService.findAll.mockResolvedValue(policies);
+
+      expect(await policyController.findAll(undefined, 1)).toBe(policies);
+      expect(policyService.findAll).toHaveBeenCalledWith(undefined, 1);
+    });
+
+    it('should pass both q and provider params to service', async () => {
+      policyService.findAll.mockResolvedValue(policies);
+
+      expect(await policyController.findAll('elite', 1)).toBe(policies);
+      expect(policyService.findAll).toHaveBeenCalledWith('elite', 1);
     });
   });
 
