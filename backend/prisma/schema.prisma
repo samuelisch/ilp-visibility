@@ -40,6 +40,7 @@ enum FeeType {
   annual_premium
   cumulative_premium_paid
   notional_premium
+  basic_sum_assured
 }
 
 enum SurrenderFeeType {
