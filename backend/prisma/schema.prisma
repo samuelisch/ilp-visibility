@@ -88,7 +88,7 @@ model PolicyAccountFee {
   recurringLength         Int?                   @map("recurring_length")
   feeType                 FeeType                @map("fee_type")
   notionalPercentage      Decimal?               @map("notional_percentage") @db.Decimal(5, 2)
-  isPercentageAvailable   Boolean                @default(true) @map("is_percentage_available")
+  isFeeAvailable   Boolean                       @default(true) @map("is_fee_available")
   chargePercentage        Decimal?               @map("charge_percentage") @db.Decimal(5, 2)
   flatFeeAmount           Decimal?               @map("flat_fee_amount") @db.Decimal(10, 2)
   minPremium              Int?                   @map("min_premium")
