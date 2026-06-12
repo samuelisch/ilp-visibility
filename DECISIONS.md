@@ -104,6 +104,8 @@ Trade-off accepted: no migration files yet. The schema lives only in the local P
 
 Cross-provider research (all 10 providers, ~75 products) confirmed that no provider charges different fees for SRS vs Cash funding. The only funding-source fee difference in the dataset is CPF vs non-CPF (0% premium charge for CPFIS on AIA Invest Easy, GE GIA, Prudential InvestGrowth, HSBC Wealth Invest). `Policy.source_type` was changed from `'cash' | 'srs' | 'cpfis'` to `'cash_or_srs' | 'cpfis'`, and `source_type` was added to the composite unique constraint on `policies`.
 
+(Update 2026-06-12, Decision 031: a `cash` value was re-added — not to undo this collapse, but on a different axis. This decision collapses cash and SRS where both are *offered* with identical fees; `cash` now marks products that offer cash *only* and do not accept SRS, e.g. Income Insurance's VS/VA series. `cash_or_srs` continues to mean "cash and SRS both accepted.")
+
 ---
 
 ## 013 — Prisma model naming: uppercase singular with @map — 2026-06-09
@@ -253,6 +255,12 @@ Cost of Insurance (COI) — the rate-table mortality/morbidity charge most regul
 - **SmartRetire (V)** — two COI lines (Appendix B): (1) **Death** COI, NAAR phase-dependent (during MIP = 105% × premiums − AV; accumulation = basic sum insured − withdrawals − AV; nil after Target Retirement Age), age 25 = 1.6552; (2) **Waiver-of-Premium-on-TPD** COI, NAAR = remaining basic premiums to Flexi Start Date capped at S$1,000,000, age 25 = 1.490, table runs only to age 69. Death COI refunded at Target Retirement Age if no death/WOP claim.
 - **Manulink Investor (II):** no COI at all (single-premium product).
 
+**Extraction reference (Income Insurance / NTUC, 2026-06-12 — male, per S$1,000 sum-at-risk/yr; monthly = annual/12):**
+- **AstraLink (VA2):** NAAR = basic benefit − policy value, charged from year 1 (death + TI + TPD). Male non-smoker: age 25 = 1.00, 40 = 1.26, 65 = 15.05. (Highest NTUC rates — smoker/gender table.)
+- **Legacy Flex Solitaire (VA3):** NAAR = adjusted sum assured − policy value, from year 1 (death + TI). Male non-smoker: age 25 = 0.23, 40 = 0.36, 65 = 4.12. (Notably lower than VA2.)
+- **Invest Flex VS1 / VS2 / VS3:** NAAR = 101% × net premiums paid − policy value, charged only from the **3rd policy anniversary** (no smoker distinction — gender + age only). Male: age 25 = 0.49, 40 = 0.79, 65 = 11.74.
+- **WealthLink (GL3), SNACK-Investment:** no COI (GL3 explicitly waives the insurance cover charge; SNACK has only an accidental-death feature, no mortality charge).
+
 When COI enters scope, start from these tables and the four build requirements above.
 
 ---
@@ -291,3 +299,17 @@ Reusable structural decisions for fees the v1 schema can't express directly. Eac
 - **paymentTermYears = MIP for whole-life-premium products** (the surrender-charge window defines the MIP; post-MIP premiums/allocation aren't modeled). **= null when there is no committed term at all** (Etiqa Invest starter; HSBC Wealth Harvest's unquantified PPT). An admin-tier step may key to a fixed policy year rather than the MIP (Manulife Duo & SmartRetire step at year 6 regardless of MIP) → its own `recurringLength`.
 - **Flexi number ≠ paymentTermYears — resolved by what the PDF explicitly names.** Etiqa "10 Years – Flexi 3/5" → PPT = 10 (flexi = premium-free entitlement); FWD Flexi Elite → PPT = MIT = 10 (flexi = shortfall window). Opposite landings, one rule.
 - **Single-account vs IUA/AUA: route-of-premiums test.** Two accounts only when premiums genuinely route to different accounts over time (HSBC Wealth Accelerate IUA→AUA; FWD Summit/First Max 24-month split); single account when all regular premiums route to one (FWD Horizon/Flexi VII/Flexi Elite — AUA omitted). Collapse accounts when all modeled charges apply identically to the combined value (Prudential Growth/Flex).
+
+## 031 — Income Insurance (NTUC Income) seed data; `cash` sourceType for cash-only products — 2026-06-12
+
+Seeded 18 Income Insurance variants across 7 families (WealthLink (GL3) SP; SNACK-Investment SP micro-ILP; AstraLink (VA2) MIP 10/15/20/25; Legacy Flex Solitaire (VA3) SP + RP MIP 5/10; Invest Flex (VS1) MIP 5/10/15/20; Invest Flex Vantage (VS2) MIP 5/10/15/20; Invest Flex TriVantage (VS3) MIP 10). Mapped one agent per finding; an independent verification fan-out (fresh agent per PDF) then diffed every modeled value — all 18 PASS. Provider legal name is "Income Insurance Limited" (the 2022 rebrand of NTUC Income); seeded as `provider.name: "Income Insurance"` (the `ntuc/` dir and `ntuc-` file prefix are kept for continuity with the PDF/findings folders).
+
+**New `cash` SourceType enum value (schema change, migration `add_cash_source_type`).** Most Income Insurance ILPs (VA2, VA3, VS1/2/3, SNACK) state "payable only with cash" — they do not accept SRS, unlike WealthLink (GL3 = cash + SRS). The existing `cash_or_srs` asserts SRS availability, so it overstated those products. This is a different axis from Decision 011's cash+SRS *fee-equivalence* collapse: `cash_or_srs` still means "cash and SRS accepted, identical fees"; `cash` means "cash only, no SRS/CPF." GL3 stays `cash_or_srs`; the other 17 files are `cash`. First provider to need it; future cash-only products reuse it.
+
+Product-specific facts:
+- **`basic_sum_assured` policy fee — Legacy Flex Solitaire (VA3).** The Policy Fee is a % of sum-assured-at-entry × an entry-age band, charged monthly for the first 4 years only (not % of policy value). Mapped to `feeType: basic_sum_assured` (Decision 020), persona age 25 → 21–25 band = 0.20%, `recurringLength: 4`. SP carries a 4% premium charge; RP variants use `term` allocation with year-by-year premium charges (MIP5: 28/23/14/7/5; MIP10: 35/26/15/10/4.5 then 3% to year 10) and `paymentTermYears` = MIP.
+- **AstraLink (VA2) policy fee 5%→1% of account value** (recurring length 5 → perpetual from year 6) — the ManuInvest Duo shape, and the steepest early wrap fee in the set. VS1/VS2/VS3 use 2.5%→0.5% (step at year 11).
+- **SNACK-Investment seeded with zero policy-level fees** — truthful (all cost is the fund-layer management fee, excluded per Decision 028); verified consumer-owned (not a Dash-style group artifact). Micro-ILP, S$1 min, single sub-fund.
+- **VS1 and VS2 both kept** despite byte-identical modeled fees (verified) — they differ only in excluded investment-bonus rates (VS1 the higher tier). Same rationale as SmartRetire Income/Sum (026). VS3 is a single MIP-10 product (15% fixed bonus, excluded).
+- **WealthLink (GL3): 3.5% premium charge only** — explicit zero policy fee, zero insurance cover charge, zero surrender charge.
+- COI excluded across all (Decision 027; NTUC rates added to its reference table). Post-MIP allocation uplifts (102%/105%) are excluded bonuses (028); `allocationTillPolicyYear` = MIP for regular-premium products (post-MIP premiums not modeled). The verification pass caught and fixed two extraction bugs: VA3 RP files used `chargePercentage` instead of `premiumChargePercentage` in allocation terms (would crash the seed), and VS2 files had `allocationTillPolicyYear: null` instead of = MIP.
