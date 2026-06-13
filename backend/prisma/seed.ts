@@ -25,7 +25,7 @@ interface SeedFee {
   recurringLength: number | null;
   feeType: FeeType;
   notionalPercentage: number | null;
-  isPercentageAvailable: boolean;
+  isFeeAvailable: boolean;
   chargePercentage: number | null;
   flatFeeAmount: number | null;
   minPremium: number | null;
