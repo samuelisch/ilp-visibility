@@ -1,0 +1,91 @@
+{
+  "provider": {
+    "name": "Income Insurance"
+  },
+  "policy": {
+    "name": "Legacy Flex Solitaire (VA3S / VA3R)",
+    "description": "Regular Premium, MIP 5",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 5,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": null,
+        "premiumAllocationType": "term",
+        "termEndBehaviour": "stop",
+        "policyAccountPremiumAllocationTerms": [
+          {
+            "policyYear": 1,
+            "premiumChargePercentage": 28
+          },
+          {
+            "policyYear": 2,
+            "premiumChargePercentage": 23
+          },
+          {
+            "policyYear": 3,
+            "premiumChargePercentage": 14
+          },
+          {
+            "policyYear": 4,
+            "premiumChargePercentage": 7
+          },
+          {
+            "policyYear": 5,
+            "premiumChargePercentage": 5
+          }
+        ],
+        "policyAccountFees": [
+          {
+            "description": "Policy Fee: 0.20% of sum assured at policy entry date (entry age band 21-25), charged monthly for first 4 policy years only (s7.2 Table 3, p10)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 4,
+            "feeType": "basic_sum_assured",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.2,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 90
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 20
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

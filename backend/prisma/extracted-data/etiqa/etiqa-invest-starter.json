@@ -1,0 +1,70 @@
+{
+  "provider": {
+    "name": "Etiqa Insurance"
+  },
+  "policy": {
+    "name": "Invest starter",
+    "description": "Regular Premium",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy Charge - 0.80% p.a. of Account value, deducted monthly (0.80% p.a. / 12 x Account value), payable throughout the policy term (whole life to age 100) (PDF p10, s26)",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.8,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 7
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 7
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 5
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

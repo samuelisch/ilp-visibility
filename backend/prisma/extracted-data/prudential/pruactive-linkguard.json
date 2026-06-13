@@ -1,0 +1,91 @@
+{
+  "provider": {
+    "name": "Prudential Assurance Singapore"
+  },
+  "policy": {
+    "name": "PRUActive LinkGuard",
+    "description": "Regular Premium",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": null,
+        "premiumAllocationType": "term",
+        "termEndBehaviour": "stop",
+        "policyAccountPremiumAllocationTerms": [
+          {
+            "policyYear": 1,
+            "premiumChargePercentage": 75
+          },
+          {
+            "policyYear": 2,
+            "premiumChargePercentage": 55
+          },
+          {
+            "policyYear": 3,
+            "premiumChargePercentage": 45
+          },
+          {
+            "policyYear": 4,
+            "premiumChargePercentage": 5
+          },
+          {
+            "policyYear": 5,
+            "premiumChargePercentage": 5
+          },
+          {
+            "policyYear": 6,
+            "premiumChargePercentage": 5
+          },
+          {
+            "policyYear": 7,
+            "premiumChargePercentage": 5
+          }
+        ],
+        "policyAccountFees": [
+          {
+            "description": "Administration Charge",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": 5,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 50
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

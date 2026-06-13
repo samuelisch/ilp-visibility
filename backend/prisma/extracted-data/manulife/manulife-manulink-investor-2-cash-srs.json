@@ -1,0 +1,27 @@
+{
+  "provider": {
+    "name": "Manulife Singapore"
+  },
+  "policy": {
+    "name": "Manulink Investor (II)",
+    "description": "Single Premium",
+    "sourceType": "cash_or_srs",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 3,
+        "premiumAllocationType": "single",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

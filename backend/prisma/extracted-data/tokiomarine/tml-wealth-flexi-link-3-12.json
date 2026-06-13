@@ -1,0 +1,113 @@
+{
+  "provider": {
+    "name": "Tokio Marine Life Singapore"
+  },
+  "policy": {
+    "name": "Wealth Flexi-Link 3.12",
+    "description": "12-Year MIP",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 12,
+    "policyAccounts": [
+      {
+        "description": "Accumulation Units Account (AUA) - 100% of each regular premium is used to purchase units and allocated to this account (premium charge 0%, PDF p.5). AUA-only product (single account); the Top-up Units Account only receives the excluded recurring-single/top-up premiums. The 5% premium charge applies only to those excluded premiums (PDF p.10). Policy charge and surrender charge are both levied on the AUA / Total Investment Value (PDF p.10-11).",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 12,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy Charge (years 1-12) - Monthly Policy Charge = (Policy Charge % / 12) x Total Investment Value, deducted monthly in advance on each Policy Monthiversary through unit deduction from the AUA (PDF p.10). FLAT 2.45% p.a. for policy years 1-12 (non-escalating; constant rate applied to the prevailing base each month). Per-annum rate table (PDF p.10): years 1-12 = 2.45%, years 13+ = 0.60%. Modeled as a recurring row for policy years 1-12 (MIP), then chained by the separate perpetual 0.60% row below. Continues to be deducted even during non-payment of regular premium.",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 12,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2.45,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Policy Charge (year 13 onwards) - Monthly Policy Charge = (0.60% per annum / 12) x Total Investment Value, deducted monthly in advance on each Policy Monthiversary through unit deduction from the AUA (PDF p.10). FLAT 0.60% p.a. from policy year 13 onwards (PDF p.10 per-annum rate table: '13 and onwards 0.60%'). Unlike the 5.10 variant, this charge does NOT stop after the minimum investment period - it persists perpetually at the reduced 0.60% rate (no 'no policy charges after MIP' statement in this Product Summary; the table explicitly continues at 0.60%). Modeled as a perpetual row starting from policy year 13. Continues to be deducted even during non-payment of regular premium.",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 13,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.6,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 92
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 85
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 78
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 75
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 68
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 58
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 48
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 7.5
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 1.5
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

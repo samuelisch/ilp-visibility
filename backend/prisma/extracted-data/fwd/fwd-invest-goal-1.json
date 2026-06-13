@@ -1,0 +1,85 @@
+{
+  "provider": {
+    "name": "FWD Singapore"
+  },
+  "policy": {
+    "name": "Invest Goal 1",
+    "description": "Single Premium",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "Initial Units Account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "single",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Initial Account Charge",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Plan Charge",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 5,
+            "feeType": "cumulative_premium_paid",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1.4,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "cumulative_premium_paid",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 7
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 5.6
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 4.2
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 2.8
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 1.4
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

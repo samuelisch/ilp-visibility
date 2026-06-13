@@ -1,0 +1,150 @@
+{
+  "provider": {
+    "name": "Prudential Assurance Singapore"
+  },
+  "policy": {
+    "name": "PRUVantage Assure II",
+    "description": "25-Year Premium Term",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 25,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 25,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Administration Charge",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 12,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2.6,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 75
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 70
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 65
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 55
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 45
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 35
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 25
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 20
+              },
+              {
+                "policyYear": 16,
+                "chargePercentage": 18
+              },
+              {
+                "policyYear": 17,
+                "chargePercentage": 18
+              },
+              {
+                "policyYear": 18,
+                "chargePercentage": 15
+              },
+              {
+                "policyYear": 19,
+                "chargePercentage": 15
+              },
+              {
+                "policyYear": 20,
+                "chargePercentage": 10
+              },
+              {
+                "policyYear": 21,
+                "chargePercentage": 10
+              },
+              {
+                "policyYear": 22,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 23,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 24,
+                "chargePercentage": 5
+              },
+              {
+                "policyYear": 25,
+                "chargePercentage": 5
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

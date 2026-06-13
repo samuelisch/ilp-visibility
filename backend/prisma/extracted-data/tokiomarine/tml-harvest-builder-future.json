@@ -1,0 +1,105 @@
+{
+  "provider": {
+    "name": "Tokio Marine Life Singapore"
+  },
+  "policy": {
+    "name": "Harvest Builder@Future",
+    "description": "10-Year MIP",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 10,
+    "policyAccounts": [
+      {
+        "description": "Accumulation Units Account (AUA) - sole modeled account: 100% of regular premiums credit to the AUA and all policy/surrender charges are levied on its value. The Top-up Units Account (recurring single + top-up premiums, with the 5% premium charge) is out of scope and omitted.",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 10,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy charge - 2.50% p.a. of Accumulation Units Account value, deducted monthly in advance (Policy Charge%/12 x AUA value), policy years 1-10",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2.5,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Policy charge - 0.60% p.a. of Accumulation Units Account value, deducted monthly in advance, from policy year 11 onwards",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 11,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.6,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 45
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 20
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 15
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 3
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

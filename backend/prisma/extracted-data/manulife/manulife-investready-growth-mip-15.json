@@ -1,0 +1,125 @@
+{
+  "provider": {
+    "name": "Manulife Singapore"
+  },
+  "policy": {
+    "name": "Manulife InvestReady Growth",
+    "description": "15-Year MIP (Flexi 10)",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 15,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 15,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Administrative Charge (in-MIP) - 2.18% p.a. of the Value of Minimum Premium Payable, deducted monthly (2.18%/12 x base). Base = annualised regular basic premiums payable up to Flexi Start Date accumulated at 6% p.a. over the MIP. Applies during the 15-year MIP (PDF p5-6).",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 15,
+            "feeType": "notional_premium",
+            "notionalPercentage": 6,
+            "isFeeAvailable": true,
+            "chargePercentage": 2.18,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Administrative Charge (post-MIP) - 0.95% p.a. of the Value of Minimum Premium Payable, deducted monthly (0.95%/12 x base). Same notional base as in-MIP phase (Value of Minimum Premium Payable); only the percentage changes. Applies from policy year 16 onwards, perpetual (PDF p5-6).",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 16,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "notional_premium",
+            "notionalPercentage": 6,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.95,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 90
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 62
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 49
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 46
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 32
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 26
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 21
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 18
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 15
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 12
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

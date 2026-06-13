@@ -1,0 +1,268 @@
+{
+  "provider": {
+    "name": "FWD Singapore"
+  },
+  "policy": {
+    "name": "Invest First Max",
+    "description": "20-Year Premium Term",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 20,
+    "policyAccounts": [
+      {
+        "description": "Initial Units Account (IUA)",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 2,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Initial Account Charge - A% p.a. of IUA value, deducted monthly (A%/12), payable throughout premium payment term only",
+            "chargeSchedule": "term",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": "stop",
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": null,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 5.5
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 5.5
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 5.5
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 5.5
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 5.5
+              },
+              {
+                "policyYear": 16,
+                "chargePercentage": 5.5
+              },
+              {
+                "policyYear": 17,
+                "chargePercentage": 5.5
+              },
+              {
+                "policyYear": 18,
+                "chargePercentage": 5.5
+              },
+              {
+                "policyYear": 19,
+                "chargePercentage": 5.5
+              },
+              {
+                "policyYear": 20,
+                "chargePercentage": 5.5
+              }
+            ]
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 99
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 99
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 99
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 97
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 94
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 91
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 87
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 83
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 70
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 61
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 56
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 51
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 16,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 17,
+                "chargePercentage": 23
+              },
+              {
+                "policyYear": 18,
+                "chargePercentage": 20
+              },
+              {
+                "policyYear": 19,
+                "chargePercentage": 18
+              },
+              {
+                "policyYear": 20,
+                "chargePercentage": 15
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "description": "Accumulation Units Account (AUA)",
+        "allocationFromPolicyYear": 3,
+        "allocationTillPolicyYear": 20,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Accumulation Account Charge - 1.6% p.a. of AUA value, deducted monthly (policy years 1-10)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1.6,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Accumulation Account Charge - 1.4% p.a. of AUA value, deducted monthly (policy years 11-20)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 11,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1.4,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Accumulation Account Charge - 1.2% p.a. of AUA value, deducted monthly (policy year 21 onwards, throughout policy term)",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 21,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1.2,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

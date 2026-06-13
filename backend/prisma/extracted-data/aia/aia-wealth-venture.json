@@ -1,0 +1,90 @@
+{
+  "provider": {
+    "name": "AIA Singapore"
+  },
+  "policy": {
+    "name": "AIA Wealth Venture",
+    "description": "8 Pay",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 8,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 8,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Supplementary Charge",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 3.6,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 70
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 65
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 55
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 20
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 10
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 5
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

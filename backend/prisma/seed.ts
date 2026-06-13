@@ -10,7 +10,7 @@ import {
   TermEndBehaviour,
 } from '../src/generated/prisma/client.js';
 import { PrismaPg } from '@prisma/adapter-pg';
-import rawSeedData from './seed-data/aia/aia-wealth-venture.json' with { type: 'json' };
+import seedData from './extracted-data/aia/aia-wealth-venture.json' with { type: 'json' };
 
 interface SeedFeeTerms {
   policyYear: number;
@@ -68,8 +68,6 @@ interface SeedData {
   };
 }
 
-const seedData: SeedData = rawSeedData as SeedData;
-
 const connectionString = `${process.env.DATABASE_URL}`;
 const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool);
@@ -101,7 +99,7 @@ async function main() {
     policyAccountFees: globalPolicyAccountFees,
     policyAccountSurrenderFees: globalPolicyAccountSurrenderFees,
     ...policyFields
-  } = seedData.policy;
+  } = (seedData as SeedData).policy;
 
   const policy = await prisma.policy.create({
     data: {

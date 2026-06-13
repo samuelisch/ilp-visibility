@@ -1,0 +1,105 @@
+{
+  "provider": {
+    "name": "HSBC Life Singapore"
+  },
+  "policy": {
+    "name": "Wealth Focus",
+    "description": "MIP 10 / Flexi Term 1",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 10,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 10,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Account Maintenance Fee (AMF) during MIP - 2.5% p.a. of annualised Regular Premium at Commencement Date; multiplier min(Policy Year, Flexi Term 1) = 1 every year, so effective rate is flat 2.5% for policy years 1-10 (PDF p10, s6.3)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2.5,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Account Maintenance Fee (AMF) after MIP - 1.0% p.a. x min(Policy Year, Flexi Term 1) = effective 1.0% of annualised Regular Premium at Commencement Date, from policy year 11 for the rest of the Policy Term (PDF p10, s6.3)",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 11,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 23
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 19
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 16
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 13
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 10
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 4
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 3
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "provider": {
+    "name": "HSBC Life Singapore"
+  },
+  "policy": {
+    "name": "Wealth Abundance",
+    "description": "MIP 10 Years",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 10,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 10,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Account Maintenance Fee (during MIP)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2.1,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Account Maintenance Fee (after MIP)",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 11,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.6,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 65
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 47
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 44
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 21
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 16
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

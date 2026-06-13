@@ -1,0 +1,140 @@
+{
+  "provider": {
+    "name": "Great Eastern Life"
+  },
+  "policy": {
+    "name": "GREAT Wealth Advantage 4",
+    "description": "Choice 15",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 15,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 15,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy Fee",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 15,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1.5,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Policy Fee (Post Year 15)",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 16,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.7,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Admin Charge",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": null,
+            "minPremium": null,
+            "maxPremium": 5999,
+            "flatFeeAmount": 5,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 45
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 25
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 15
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 10
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 7
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 7
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

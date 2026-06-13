@@ -1,0 +1,173 @@
+{
+  "provider": {
+    "name": "Tokio Marine Life Singapore"
+  },
+  "policy": {
+    "name": "Harvest Pro",
+    "description": "10-Year MIP",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 10,
+    "policyAccounts": [
+      {
+        "description": "Initial Units Account (IUA) - receives 100% of regular premiums due during the first 36 months (policy years 1-3) and any regular premium paid after the minimum investment period. The Initial Setup Charge and Admin Charge are levied on the IUA value, and the Surrender Charge is calculated against the IUA value.",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 3,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Initial Setup Charge / Initial Charge - 1.05% p.a. x Initial Units Account value x N/12, deducted monthly in advance on each Policy Monthiversary during the minimum investment period (N = policy year). Flat 1.05% rate (not PPT-banded). Modeled as a 'term' schedule on account_value with year-n chargePercentage = 1.05 x min(N, 10).",
+            "chargeSchedule": "term",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": "stop",
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": null,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 1.05
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 2.1
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 3.15
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 4.2
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 5.25
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 6.3
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 7.35
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 8.4
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 9.45
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 10.5
+              }
+            ]
+          },
+          {
+            "description": "Admin Charge - 2.00% p.a. x annualised regular premium committed at commencement / 12 (flat monthly amount), deducted monthly in advance from the Initial Units Account during the minimum investment period. Constant each month (no N escalation). Modeled as recurring on annual_premium for the 10-year MIP.",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 99
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 99
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 96
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 93
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 89
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "description": "Accumulation Units Account (AUA) - receives 100% of regular premiums due from the 37th month of the commencement date (policy year 4) until the end of the minimum investment period. The Policy Investment Charge is levied here (on annualised regular premium).",
+        "allocationFromPolicyYear": 4,
+        "allocationTillPolicyYear": 10,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy Investment Charge / Policy Charge - 1.20% p.a. x annualised regular premium committed at commencement x N/12, deducted monthly in advance from the 37th policy month (policy year 4) onwards (N = policy year during MIP, then N = MIP). Escalating on annualised premium. Deducted from the AUA.",
+            "chargeSchedule": "escalating_n",
+            "activeFromPolicyYear": 4,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1.2,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

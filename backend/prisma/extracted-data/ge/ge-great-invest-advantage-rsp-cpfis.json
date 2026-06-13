@@ -1,0 +1,27 @@
+{
+  "provider": {
+    "name": "Great Eastern Life"
+  },
+  "policy": {
+    "name": "GREAT Invest Advantage",
+    "description": "Regular Savings Plan",
+    "sourceType": "cpfis",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

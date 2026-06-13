@@ -1,0 +1,90 @@
+{
+  "provider": {
+    "name": "AIA Singapore"
+  },
+  "policy": {
+    "name": "AIA Elite Secure Income",
+    "description": "Single Premium",
+    "sourceType": "cash_or_srs",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 5,
+        "premiumAllocationType": "single",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Supplementary Charge",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "cumulative_premium_paid",
+            "notionalPercentage": null,
+            "isFeeAvailable": false,
+            "chargePercentage": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 12
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 11
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 10
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 9
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 7
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 5
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 4
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 3
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

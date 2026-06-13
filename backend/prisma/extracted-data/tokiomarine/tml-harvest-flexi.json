@@ -1,0 +1,146 @@
+{
+  "provider": {
+    "name": "Tokio Marine Life Singapore"
+  },
+  "policy": {
+    "name": "Harvest Flexi",
+    "description": "10-Year MIP",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 10,
+    "policyAccounts": [
+      {
+        "description": "Accumulation Units Account (AUA) - receives 100% of each regular premium (premium charge 0%, PDF p.4). AUA-only product (single account). The 5% premium charge applies only to excluded recurring-single/top-up premiums (PDF p.11). Admin charge (5% of each regular premium received from policy year 4 to end of MIP, PDF p.10) modeled as a 'term' premium-allocation schedule on this account: 0% years 1-3, 5% years 4-10. Initial setup charge, policy investment charge, and surrender charge are all levied on the AUA value.",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": null,
+        "premiumAllocationType": "term",
+        "termEndBehaviour": "stop",
+        "policyAccountPremiumAllocationTerms": [
+          {
+            "policyYear": 1,
+            "premiumChargePercentage": 0
+          },
+          {
+            "policyYear": 2,
+            "premiumChargePercentage": 0
+          },
+          {
+            "policyYear": 3,
+            "premiumChargePercentage": 0
+          },
+          {
+            "policyYear": 4,
+            "premiumChargePercentage": 5
+          },
+          {
+            "policyYear": 5,
+            "premiumChargePercentage": 5
+          },
+          {
+            "policyYear": 6,
+            "premiumChargePercentage": 5
+          },
+          {
+            "policyYear": 7,
+            "premiumChargePercentage": 5
+          },
+          {
+            "policyYear": 8,
+            "premiumChargePercentage": 5
+          },
+          {
+            "policyYear": 9,
+            "premiumChargePercentage": 5
+          },
+          {
+            "policyYear": 10,
+            "premiumChargePercentage": 5
+          }
+        ],
+        "policyAccountFees": [
+          {
+            "description": "Initial Setup Charge / Initial Charge - 1.2% p.a. x Accumulation Units Account value, deducted monthly in advance (monthly = 1.2%/12 x AUA value). Flat, non-escalating. Levied 'while the policy is in-force' with no MIP restriction stated (PDF p.9), so perpetual. Continues to be deducted even during non-payment of regular premium.",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1.2,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Policy Investment Charge / Policy Charge - 1.5% p.a. x annualised regular premium committed at commencement x N/12, deducted monthly in advance during the minimum investment period (N = policy year). Escalating on annualised premium: engine computes (1.5/12) x annualPremium x min(year, recurringLength=10), accruing from policy year 1, capped at MIP=10. Deducted from the AUA. Continues to be deducted even during non-payment of regular premium.",
+            "chargeSchedule": "escalating_n",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1.5,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 79
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 47
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 44
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 21
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 16
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 7
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

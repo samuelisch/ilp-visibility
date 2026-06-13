@@ -1,0 +1,105 @@
+{
+  "provider": {
+    "name": "Income Insurance"
+  },
+  "policy": {
+    "name": "Invest Flex (VS1)",
+    "description": "Regular Premium, MIP 10",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 10,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 10,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy Fee - 2.5% per annum of policy value, deducted monthly via unit cancellation, policy years 1-10 (PDF p7, s7.2). Same rate for all MIPs.",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2.5,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Policy Fee - 0.5% per annum of policy value, deducted monthly via unit cancellation, policy year 11 onwards (PDF p7, s7.2). Same rate for all MIPs.",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 11,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.5,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 45
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 20
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 15
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 5
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

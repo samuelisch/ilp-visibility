@@ -1,0 +1,70 @@
+{
+  "provider": {
+    "name": "Great Eastern Life"
+  },
+  "policy": {
+    "name": "Prestige Legacy Advantage",
+    "description": "Single Premium",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 5,
+        "premiumAllocationType": "single",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy Fee (22-31 entry-age band, first 5 policy years)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 5,
+            "feeType": "basic_sum_assured",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.18,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 17
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 14
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 11
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 7
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 4
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

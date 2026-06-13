@@ -1,0 +1,43 @@
+{
+  "provider": {
+    "name": "Prudential Assurance Singapore"
+  },
+  "policy": {
+    "name": "PRULink InvestGrowth (SP)",
+    "description": "Single Premium (Cash/SRS)",
+    "sourceType": "cash_or_srs",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 3,
+        "premiumAllocationType": "single",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Assurance Charge (one-off 1.5% of single premium, Cash/SRS only)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 1,
+            "feeType": "cumulative_premium_paid",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1.5,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

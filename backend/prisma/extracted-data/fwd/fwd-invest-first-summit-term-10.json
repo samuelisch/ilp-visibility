@@ -1,0 +1,132 @@
+{
+  "provider": {
+    "name": "FWD Singapore"
+  },
+  "policy": {
+    "name": "Invest First Summit",
+    "description": "10-Year Premium Term",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 10,
+    "policyAccounts": [
+      {
+        "description": "Initial Units Account (IUA)",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 2,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Initial account charge - 3.95% p.a. of initial units account value, deducted monthly throughout Premium Payment Term",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 3.95,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 99
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 99
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 99
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 81
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 65
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 31
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 9
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "description": "Accumulation Units Account (AUA)",
+        "allocationFromPolicyYear": 3,
+        "allocationTillPolicyYear": 10,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Accumulation account charge (AV leg of min formula) - lower of 1.5% p.a. of AUA value or 0.7% x PPT x annualised premium p.a., monthly throughout Policy Term (PDF p9); AV leg binds while AUA below 7.0/1.5 = 4.67x annual premium, modeled for years 1-6 (crossover midpoint of 3%/8% scenarios, Decision 024)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 6,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1.5,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Accumulation account charge (cap leg of min formula) - 0.7% x 10 = 7.0% of annualised premium p.a., monthly, perpetual from year 7 once the fixed cap binds (PDF p9, Decision 024)",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 7,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 7,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "provider": {
+    "name": "Manulife Singapore"
+  },
+  "policy": {
+    "name": "Manulife InvestReady (III)",
+    "description": "5-Year MIP (Flexi 1)",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 5,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 5,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Administrative Charge - 2.50% p.a. of account value during MIP (policy years 1-5), deducted monthly via unit cancellation. Flexi 1 is only offered in the multi-currency filing WA_MIR03 (not the SGD-only WA_MIRP); SGD availability confirmed WA_MIR03 p3 (WA_MIR03 p6)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 5,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2.5,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Administrative Charge - 1.00% p.a. of account value after MIP (policy year 6 onwards, throughout policy term to age 99), deducted monthly via unit cancellation. Flexi 1 takes the 1.00% post-MIP rate (Flexi 1/4/2/5 group), not 0.70% (WA_MIR03 p6)",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 6,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 15
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 12
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 9
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 6
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 3
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

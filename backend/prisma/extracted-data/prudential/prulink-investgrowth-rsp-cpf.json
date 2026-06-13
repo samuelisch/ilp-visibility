@@ -1,0 +1,27 @@
+{
+  "provider": {
+    "name": "Prudential Assurance Singapore"
+  },
+  "policy": {
+    "name": "PRULink InvestGrowth",
+    "description": "Recurrent Single Premium (CPF-OA/CPF-SA)",
+    "sourceType": "cpfis",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

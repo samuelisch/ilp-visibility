@@ -1,0 +1,56 @@
+{
+  "provider": {
+    "name": "HSBC Life Singapore"
+  },
+  "policy": {
+    "name": "Flexi Protector",
+    "description": "Regular Premium",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": null,
+        "premiumAllocationType": "term",
+        "termEndBehaviour": "stop",
+        "policyAccountPremiumAllocationTerms": [
+          {
+            "policyYear": 1,
+            "premiumChargePercentage": 80
+          },
+          {
+            "policyYear": 2,
+            "premiumChargePercentage": 60
+          },
+          {
+            "policyYear": 3,
+            "premiumChargePercentage": 45
+          }
+        ],
+        "policyAccountFees": [
+          {
+            "description": "Administration Fee",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": 5,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

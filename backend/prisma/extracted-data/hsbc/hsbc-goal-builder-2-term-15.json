@@ -1,0 +1,125 @@
+{
+  "provider": {
+    "name": "HSBC Life Singapore"
+  },
+  "policy": {
+    "name": "Goal Builder II",
+    "description": "15-Year Premium Term",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 15,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 15,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Product Administration Fee (PAF) - 2.50% p.a. rate for Premium Years 1-8; monthly PAF = (annual rate / 12) x annualised premium at Commencement Date x lower of (Policy Year, Premium Term) (PDF p8, s5.2)",
+            "chargeSchedule": "escalating_n",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 8,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2.5,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Product Administration Fee (PAF) - 0.60% p.a. rate for Premium Years 9-24; monthly PAF = (annual rate / 12) x annualised premium at Commencement Date x lower of (Policy Year, Premium Term); no PAF from Premium Year 25 onwards (PDF p8, s5.2)",
+            "chargeSchedule": "escalating_n",
+            "activeFromPolicyYear": 9,
+            "termEndBehaviour": null,
+            "recurringLength": 16,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.6,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 75
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 70
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 20
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 10
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

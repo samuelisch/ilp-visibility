@@ -1,0 +1,125 @@
+{
+  "provider": {
+    "name": "Etiqa Insurance"
+  },
+  "policy": {
+    "name": "Invest Smart Vista",
+    "description": "15-Year Premium Term",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 15,
+    "policyAccounts": [
+      {
+        "description": "Regular Premium Account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 15,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy Charge - 2.00% p.a. of total regular premiums paid to date, deducted monthly ((rate/12) x total regular Premium paid), policy years 1-15 (premium payment term)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 15,
+            "feeType": "cumulative_premium_paid",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Policy Charge - 0.60% p.a. of total regular premiums paid to date, deducted monthly, policy year 16 onwards (post-PPT sliding scale collapsed to final row under on-time payment assumption) (bottom of the post-PPT sliding scale indexed by number of annualised premiums paid; collapses to 0.60% under the on-time-payment assumption, Decision 025)",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 16,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "cumulative_premium_paid",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.6,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 81
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 70
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 58
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 53
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 51
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 38
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 33
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 28
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 22
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 18
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

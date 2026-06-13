@@ -1,0 +1,198 @@
+{
+  "provider": {
+    "name": "Tokio Marine Life Singapore"
+  },
+  "policy": {
+    "name": "#goAssure",
+    "description": "MCP 15",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 15,
+    "policyAccounts": [
+      {
+        "description": "Initial Units Account (IUA)",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 4,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Initial Charge",
+            "chargeSchedule": "term",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": "stop",
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 0.45
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 0.9
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 1.35
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 1.8
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 2.25
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 2.7
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 3.15
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 3.6
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 4.05
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 4.5
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 4.95
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 5.4
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 5.85
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 6.3
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 6.75
+              }
+            ]
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 95
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 95
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 76
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 76
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 76
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 73
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 73
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 73
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 70
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 45
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 25
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 7
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "description": "Accumulation Units Account (AUA)",
+        "allocationFromPolicyYear": 5,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy Charge",
+            "chargeSchedule": "escalating_n",
+            "activeFromPolicyYear": 5,
+            "termEndBehaviour": null,
+            "recurringLength": 15,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "provider": {
+    "name": "Manulife Singapore"
+  },
+  "policy": {
+    "name": "ManuInvest Duo",
+    "description": "20-Year MIP",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 20,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 20,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Administrative Charge - 5.0% per annum of account value, charged monthly via unit cancellation, policy years 1-5 (PDF p5, s2)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 5,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 5,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Administrative Charge - 1.0% per annum of account value, charged monthly via unit cancellation, policy year 6 onwards throughout the policy term (PDF p5, s2)",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 6,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 90
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 81
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 71
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 65
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 59
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 53
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 48
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 43
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 38
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 34
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 26
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 22
+              },
+              {
+                "policyYear": 16,
+                "chargePercentage": 18
+              },
+              {
+                "policyYear": 17,
+                "chargePercentage": 14
+              },
+              {
+                "policyYear": 18,
+                "chargePercentage": 10
+              },
+              {
+                "policyYear": 19,
+                "chargePercentage": 9
+              },
+              {
+                "policyYear": 20,
+                "chargePercentage": 8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

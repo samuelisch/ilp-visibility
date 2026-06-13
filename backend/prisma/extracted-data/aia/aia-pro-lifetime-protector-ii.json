@@ -1,0 +1,75 @@
+{
+  "provider": {
+    "name": "AIA Singapore"
+  },
+  "policy": {
+    "name": "AIA Pro Lifetime Protector (II)",
+    "description": "Regular Premium",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": null,
+        "premiumAllocationType": "term",
+        "termEndBehaviour": "stop",
+        "policyAccountPremiumAllocationTerms": [
+          {
+            "policyYear": 1,
+            "premiumChargePercentage": 80
+          },
+          {
+            "policyYear": 2,
+            "premiumChargePercentage": 55
+          },
+          {
+            "policyYear": 3,
+            "premiumChargePercentage": 50
+          },
+          {
+            "policyYear": 4,
+            "premiumChargePercentage": 8
+          }
+        ],
+        "policyAccountFees": [
+          {
+            "description": "Policy Fee",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": 5,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 75
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 50
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

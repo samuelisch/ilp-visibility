@@ -1,0 +1,145 @@
+{
+  "provider": {
+    "name": "Etiqa Insurance"
+  },
+  "policy": {
+    "name": "Invest flex pro",
+    "description": "20-Year Premium Term",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 20,
+    "policyAccounts": [
+      {
+        "description": "Regular Premium Account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 20,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy Charge - 1.61% p.a. for policy years 1-20; monthly policy charge = (Policy charge percentage / 12) X annualised regular Premium at Policy issue date X [lower of (Policy year and selected premium payment term)]; deducted via unit cancellation from Regular Premium Account (PDF p18, s31)",
+            "chargeSchedule": "escalating_n",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 20,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1.61,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Policy Charge - 0.70% p.a. from policy year 21 onwards, payable throughout the policy term (to age 100); escalation factor stays capped at the 20-year premium payment term (PDF p18, s31)",
+            "chargeSchedule": "escalating_n",
+            "activeFromPolicyYear": 21,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.7,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 90
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 75
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 63
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 59
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 55
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 51
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 45
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 35
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 25
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 20
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 14
+              },
+              {
+                "policyYear": 16,
+                "chargePercentage": 10
+              },
+              {
+                "policyYear": 17,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 18,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 19,
+                "chargePercentage": 8
+              },
+              {
+                "policyYear": 20,
+                "chargePercentage": 8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "provider": {
+    "name": "HSBC Life Singapore"
+  },
+  "policy": {
+    "name": "Wealth Accelerate",
+    "description": "MIP 30 Years",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 30,
+    "policyAccounts": [
+      {
+        "description": "Initial Units Account (IUA)",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 5,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Account Maintenance Fee (AMF) - 3.4% p.a. of IUA value during MIP",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 30,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 3.4,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 99
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 98
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 97
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 96
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 95
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 94
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 93
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 92
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 91
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 90
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 89
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 75
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 68
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 58
+              },
+              {
+                "policyYear": 16,
+                "chargePercentage": 48
+              },
+              {
+                "policyYear": 17,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 18,
+                "chargePercentage": 32
+              },
+              {
+                "policyYear": 19,
+                "chargePercentage": 26
+              },
+              {
+                "policyYear": 20,
+                "chargePercentage": 24
+              },
+              {
+                "policyYear": 21,
+                "chargePercentage": 22
+              },
+              {
+                "policyYear": 22,
+                "chargePercentage": 20
+              },
+              {
+                "policyYear": 23,
+                "chargePercentage": 19
+              },
+              {
+                "policyYear": 24,
+                "chargePercentage": 18
+              },
+              {
+                "policyYear": 25,
+                "chargePercentage": 17
+              },
+              {
+                "policyYear": 26,
+                "chargePercentage": 16
+              },
+              {
+                "policyYear": 27,
+                "chargePercentage": 15
+              },
+              {
+                "policyYear": 28,
+                "chargePercentage": 13
+              },
+              {
+                "policyYear": 29,
+                "chargePercentage": 10
+              },
+              {
+                "policyYear": 30,
+                "chargePercentage": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "description": "Accumulation Units Account (AUA)",
+        "allocationFromPolicyYear": 6,
+        "allocationTillPolicyYear": 30,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Investment Management Fee (IMF) - 1.0% p.a. of AUA value throughout policy term",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

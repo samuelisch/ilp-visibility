@@ -1,0 +1,90 @@
+{
+  "provider": {
+    "name": "Tokio Marine Life Singapore"
+  },
+  "policy": {
+    "name": "Wealth Flexi-Link 5.10",
+    "description": "10-Year MIP",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 10,
+    "policyAccounts": [
+      {
+        "description": "Accumulation Units Account (AUA) - 100% of each regular premium is used to purchase units and allocated to this account (premium charge 0%, PDF p.5). AUA-only product (single account); the Top-up Units Account only receives excluded recurring-single/top-up premiums. The 5% premium charge applies only to those excluded premiums (PDF p.10). Policy charge and surrender charge are both levied on the AUA / Total Investment Value (PDF p.10-11).",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy Charge - Monthly Policy Charge = (2.50% per annum / 12) x Total Investment Value, deducted monthly in advance on each Policy Monthiversary through unit deduction from the AUA (PDF p.10). FLAT 2.50% p.a. (non-escalating, constant base each month). Levied only 'while the policy is in-force during the minimum investment period' (PDF p.10); Plan Description p.1(d) explicitly confirms 'No policy charges after the minimum investment period.' Modeled as a single recurring row for policy years 1-10 (MIP); the charge is 0% from policy year 11 onward, so recurring naturally stops and NO post-MIP row is needed. Continues to be deducted even during non-payment of regular premium.",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 10,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2.5,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 92
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 83
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 58
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 57
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 49
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 12
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 3
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

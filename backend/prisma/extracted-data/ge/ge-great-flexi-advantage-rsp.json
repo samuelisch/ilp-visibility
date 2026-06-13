@@ -1,0 +1,27 @@
+{
+  "provider": {
+    "name": "Great Eastern Life"
+  },
+  "policy": {
+    "name": "GREAT Flexi Advantage",
+    "description": "Regular Savings Plan",
+    "sourceType": "cash_or_srs",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 3,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

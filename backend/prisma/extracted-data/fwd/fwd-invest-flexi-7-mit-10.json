@@ -1,0 +1,90 @@
+{
+  "provider": {
+    "name": "FWD Singapore"
+  },
+  "policy": {
+    "name": "Invest Flexi VII",
+    "description": "10-Year Minimum Investment Term",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 10,
+    "policyAccounts": [
+      {
+        "description": "Initial Units Account (IUA) - sole modeled account: all regular premiums credit to the IUA for the entire policy term; the accumulation units account receives only out-of-scope top-ups and is omitted (Decision 024)",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 10,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Initial account charge - 2.4% p.a., deducted monthly from the initial units account throughout the Policy Term: (2.4% / 12) x Annualised Regular Premium committed at Effective Date x N, where N = Policy Year during the Minimum Investment Term, thereafter N = the Minimum Investment Term (PDF p7, s4)",
+            "chargeSchedule": "escalating_n",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "annual_premium",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 2.4,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 68
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 58
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 55
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 45
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 15
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 7
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

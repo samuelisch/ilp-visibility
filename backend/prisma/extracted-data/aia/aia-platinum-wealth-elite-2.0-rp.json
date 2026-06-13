@@ -1,0 +1,95 @@
+{
+  "provider": {
+    "name": "AIA Singapore"
+  },
+  "policy": {
+    "name": "AIA Platinum Wealth Elite 2.0",
+    "description": "Regular Premium",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": null,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": null,
+        "premiumAllocationType": "term",
+        "termEndBehaviour": "persist_last",
+        "policyAccountPremiumAllocationTerms": [
+          {
+            "policyYear": 1,
+            "premiumChargePercentage": 30
+          },
+          {
+            "policyYear": 2,
+            "premiumChargePercentage": 25
+          },
+          {
+            "policyYear": 3,
+            "premiumChargePercentage": 15
+          },
+          {
+            "policyYear": 4,
+            "premiumChargePercentage": 8
+          },
+          {
+            "policyYear": 5,
+            "premiumChargePercentage": 6
+          },
+          {
+            "policyYear": 6,
+            "premiumChargePercentage": 3
+          }
+        ],
+        "policyAccountFees": [
+          {
+            "description": "Administration Charge",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 4,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.24,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 20
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 10
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

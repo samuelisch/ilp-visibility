@@ -1,0 +1,105 @@
+{
+  "provider": {
+    "name": "Income Insurance"
+  },
+  "policy": {
+    "name": "AstraLink (VA2)",
+    "description": "Regular Premium, MIP 10",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 10,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 10,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Policy Fee - 5% per annum of policy value, deducted monthly via unit cancellation, policy years 1-5 (PDF p8, s7.2). Same rate for all MIPs.",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 5,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 5,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          },
+          {
+            "description": "Policy Fee - 1% per annum of policy value, deducted monthly via unit cancellation, policy year 6 onwards (PDF p8, s7.2). Same rate for all MIPs.",
+            "chargeSchedule": "perpetual",
+            "activeFromPolicyYear": 6,
+            "termEndBehaviour": null,
+            "recurringLength": null,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 1,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 65
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 55
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 20
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

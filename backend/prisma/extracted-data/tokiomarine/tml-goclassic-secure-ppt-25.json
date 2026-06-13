@@ -1,0 +1,177 @@
+{
+  "provider": {
+    "name": "Tokio Marine Life Singapore"
+  },
+  "policy": {
+    "name": "#goClassic Secure",
+    "description": "PPT 25",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 25,
+    "policyAccounts": [
+      {
+        "description": "Initial Units Account (IUA)",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 2,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Initial Charge",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 25,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 5.4,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 95
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 93
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 91
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 89
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 87
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 85
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 83
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 11,
+                "chargePercentage": 77
+              },
+              {
+                "policyYear": 12,
+                "chargePercentage": 74
+              },
+              {
+                "policyYear": 13,
+                "chargePercentage": 71
+              },
+              {
+                "policyYear": 14,
+                "chargePercentage": 68
+              },
+              {
+                "policyYear": 15,
+                "chargePercentage": 64
+              },
+              {
+                "policyYear": 16,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 17,
+                "chargePercentage": 56
+              },
+              {
+                "policyYear": 18,
+                "chargePercentage": 51
+              },
+              {
+                "policyYear": 19,
+                "chargePercentage": 46
+              },
+              {
+                "policyYear": 20,
+                "chargePercentage": 41
+              },
+              {
+                "policyYear": 21,
+                "chargePercentage": 36
+              },
+              {
+                "policyYear": 22,
+                "chargePercentage": 31
+              },
+              {
+                "policyYear": 23,
+                "chargePercentage": 26
+              },
+              {
+                "policyYear": 24,
+                "chargePercentage": 21
+              },
+              {
+                "policyYear": 25,
+                "chargePercentage": 15
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "description": "Accumulation Units Account (AUA)",
+        "allocationFromPolicyYear": 3,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [
+      {
+        "description": "Policy Charge [moved to policy level: base = total policy value (IUA+AUA)]",
+        "chargeSchedule": "perpetual",
+        "activeFromPolicyYear": 1,
+        "termEndBehaviour": null,
+        "recurringLength": null,
+        "feeType": "account_value",
+        "notionalPercentage": null,
+        "isFeeAvailable": true,
+        "chargePercentage": 1.35,
+        "minPremium": null,
+        "maxPremium": null,
+        "flatFeeAmount": null,
+        "policyAccountFeeTerms": []
+      }
+    ],
+    "policyAccountSurrenderFees": []
+  }
+}

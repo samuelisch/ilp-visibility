@@ -1,0 +1,131 @@
+{
+  "provider": {
+    "name": "Income Insurance"
+  },
+  "policy": {
+    "name": "Legacy Flex Solitaire (VA3S / VA3R)",
+    "description": "Regular Premium, MIP 10",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 10,
+    "policyAccounts": [
+      {
+        "description": "main account",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": null,
+        "premiumAllocationType": "term",
+        "termEndBehaviour": "stop",
+        "policyAccountPremiumAllocationTerms": [
+          {
+            "policyYear": 1,
+            "premiumChargePercentage": 35
+          },
+          {
+            "policyYear": 2,
+            "premiumChargePercentage": 26
+          },
+          {
+            "policyYear": 3,
+            "premiumChargePercentage": 15
+          },
+          {
+            "policyYear": 4,
+            "premiumChargePercentage": 10
+          },
+          {
+            "policyYear": 5,
+            "premiumChargePercentage": 4.5
+          },
+          {
+            "policyYear": 6,
+            "premiumChargePercentage": 3
+          },
+          {
+            "policyYear": 7,
+            "premiumChargePercentage": 3
+          },
+          {
+            "policyYear": 8,
+            "premiumChargePercentage": 3
+          },
+          {
+            "policyYear": 9,
+            "premiumChargePercentage": 3
+          },
+          {
+            "policyYear": 10,
+            "premiumChargePercentage": 3
+          }
+        ],
+        "policyAccountFees": [
+          {
+            "description": "Policy Fee: 0.20% of sum assured at policy entry date (entry age band 21-25), charged monthly for first 4 policy years only (s7.2 Table 3, p10)",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 4,
+            "feeType": "basic_sum_assured",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 0.2,
+            "flatFeeAmount": null,
+            "minPremium": null,
+            "maxPremium": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 90
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 80
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 70
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 60
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 55
+              },
+              {
+                "policyYear": 6,
+                "chargePercentage": 50
+              },
+              {
+                "policyYear": 7,
+                "chargePercentage": 45
+              },
+              {
+                "policyYear": 8,
+                "chargePercentage": 40
+              },
+              {
+                "policyYear": 9,
+                "chargePercentage": 30
+              },
+              {
+                "policyYear": 10,
+                "chargePercentage": 20
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "policyAccountFees": [],
+    "policyAccountSurrenderFees": []
+  }
+}

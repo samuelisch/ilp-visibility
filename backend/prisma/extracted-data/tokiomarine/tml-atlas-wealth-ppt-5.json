@@ -1,0 +1,97 @@
+{
+  "provider": {
+    "name": "Tokio Marine Life Singapore"
+  },
+  "policy": {
+    "name": "TM Atlas Wealth",
+    "description": "PPT 5",
+    "sourceType": "cash",
+    "domicile": "sgd",
+    "paymentTermYears": 5,
+    "policyAccounts": [
+      {
+        "description": "Initial Units Account (IUA)",
+        "allocationFromPolicyYear": 1,
+        "allocationTillPolicyYear": 1,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [
+          {
+            "description": "Initial Charge",
+            "chargeSchedule": "recurring",
+            "activeFromPolicyYear": 1,
+            "termEndBehaviour": null,
+            "recurringLength": 5,
+            "feeType": "account_value",
+            "notionalPercentage": null,
+            "isFeeAvailable": true,
+            "chargePercentage": 4,
+            "minPremium": null,
+            "maxPremium": null,
+            "flatFeeAmount": null,
+            "policyAccountFeeTerms": []
+          }
+        ],
+        "policyAccountSurrenderFees": [
+          {
+            "termEndBehaviour": "stop",
+            "feeType": "account_value",
+            "policyAccountSurrenderFeeTerms": [
+              {
+                "policyYear": 1,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 2,
+                "chargePercentage": 100
+              },
+              {
+                "policyYear": 3,
+                "chargePercentage": 20
+              },
+              {
+                "policyYear": 4,
+                "chargePercentage": 15
+              },
+              {
+                "policyYear": 5,
+                "chargePercentage": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "description": "Accumulation Units Account (AUA)",
+        "allocationFromPolicyYear": 2,
+        "allocationTillPolicyYear": null,
+        "premiumChargePercentage": 0,
+        "premiumAllocationType": "recurring",
+        "termEndBehaviour": null,
+        "policyAccountPremiumAllocationTerms": [],
+        "policyAccountFees": [],
+        "policyAccountSurrenderFees": []
+      }
+    ],
+    "policyAccountFees": [
+      {
+        "description": "Policy Charge [moved to policy level: base = total policy value (IUA+AUA)]",
+        "chargeSchedule": "perpetual",
+        "activeFromPolicyYear": 1,
+        "termEndBehaviour": null,
+        "recurringLength": null,
+        "feeType": "account_value",
+        "notionalPercentage": null,
+        "isFeeAvailable": true,
+        "chargePercentage": 1.5,
+        "minPremium": null,
+        "maxPremium": null,
+        "flatFeeAmount": null,
+        "policyAccountFeeTerms": []
+      }
+    ],
+    "policyAccountSurrenderFees": []
+  }
+}
