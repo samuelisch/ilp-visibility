@@ -10,7 +10,8 @@ import {
   TermEndBehaviour,
 } from '../src/generated/prisma/client.js';
 import { PrismaPg } from '@prisma/adapter-pg';
-import seedData from './extracted-data/aia/aia-wealth-venture.json' with { type: 'json' };
+import { readdirSync, readFileSync } from 'fs';
+import { join } from 'path';
 
 interface SeedFeeTerms {
   policyYear: number;
@@ -73,6 +74,11 @@ const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
+// The extracted-data JSON files are the source of truth for the dataset.
+// This loader rebuilds the database to exactly match them: wipe, then recreate
+// from every file. Idempotent in effect — re-running always yields the same DB.
+const DATA_DIR = join(import.meta.dirname, 'extracted-data');
+
 function mapFees(fees: SeedFee[]) {
   return fees.map(({ policyAccountFeeTerms, ...feeFields }) => ({
     ...feeFields,
@@ -87,8 +93,26 @@ function mapSurrenderFees(surrenderFees: SeedSurrenderFee[]) {
   }));
 }
 
-async function main() {
-  const provider = await prisma.provider.upsert({
+function listSeedFiles(): string[] {
+  const files: string[] = [];
+  for (const provider of readdirSync(DATA_DIR, { withFileTypes: true })) {
+    if (!provider.isDirectory()) continue;
+    const dir = join(DATA_DIR, provider.name);
+    for (const file of readdirSync(dir)) {
+      if (file.endsWith('.json')) files.push(join(dir, file));
+    }
+  }
+  return files.sort();
+}
+
+// The transaction client — same query API as PrismaClient minus connection-lifecycle methods.
+type TxClient = Omit<
+  typeof prisma,
+  '$connect' | '$disconnect' | '$on' | '$transaction' | '$use' | '$extends'
+>;
+
+async function seedPolicy(tx: TxClient, seedData: SeedData) {
+  const provider = await tx.provider.upsert({
     where: { name: seedData.provider.name },
     update: {},
     create: seedData.provider,
@@ -99,9 +123,9 @@ async function main() {
     policyAccountFees: globalPolicyAccountFees,
     policyAccountSurrenderFees: globalPolicyAccountSurrenderFees,
     ...policyFields
-  } = (seedData as SeedData).policy;
+  } = seedData.policy;
 
-  const policy = await prisma.policy.create({
+  await tx.policy.create({
     data: {
       providerId: provider.id,
       ...policyFields,
@@ -123,20 +147,42 @@ async function main() {
       policyAccountFees: { create: mapFees(globalPolicyAccountFees) },
       policyAccountSurrenderFees: { create: mapSurrenderFees(globalPolicyAccountSurrenderFees) },
     },
-    include: {
-      policyAccounts: {
-        include: {
-          policyAccountPremiumAllocationTerms: true,
-          policyAccountFees: { include: { policyAccountFeeTerms: true } },
-          policyAccountSurrenderFees: { include: { policyAccountSurrenderFeeTerms: true } },
-        },
-      },
-      policyAccountFees: { include: { policyAccountFeeTerms: true } },
-      policyAccountSurrenderFees: { include: { policyAccountSurrenderFeeTerms: true } },
-    },
   });
+}
 
-  console.log(JSON.stringify(policy, null, 2));
+async function main() {
+  const files = listSeedFiles();
+
+  // Wipe + re-seed all policies in a single transaction.
+  // future: only remove and re-seed policies with updates?
+  const seeded = await prisma.$transaction(
+    async (tx) => {
+      await tx.$executeRawUnsafe(
+        `TRUNCATE TABLE
+           providers, policies, policy_accounts,
+           policy_account_fees, policy_account_fee_terms,
+           policy_account_surrender_fees, policy_account_surrender_fee_terms,
+           policy_account_premium_allocation_terms
+         RESTART IDENTITY CASCADE`,
+      );
+
+      let count = 0;
+      for (const file of files) {
+        const seedData = JSON.parse(readFileSync(file, 'utf8')) as SeedData;
+        try {
+          await seedPolicy(tx, seedData);
+          count++;
+        } catch (e) {
+          console.error(`Failed seeding ${file}`);
+          throw e;
+        }
+      }
+      return count;
+    },
+    { maxWait: 10_000, timeout: 60_000 },
+  );
+
+  console.log(`Seeded ${seeded}/${files.length} policies`);
 }
 
 main()
