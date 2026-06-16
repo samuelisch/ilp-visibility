@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "Elite Secure Income", "description": "Single Premium", "domicile": "sgd", "paymentTermYears": null, "sourceType": "cash_or_srs", "provider": { "name": "AIA" } },
+  { "id": 2, "name": "Elite Secure Income", "description": "5 Pay", "domicile": "sgd", "paymentTermYears": 5, "sourceType": "cash", "provider": { "name": "AIA" } },
+  { "id": 3, "name": "ManuInvest Duo", "description": "MIP 20", "domicile": "sgd", "paymentTermYears": 20, "sourceType": "cash", "provider": { "name": "Manulife" } },
+  { "id": 4, "name": "GREAT Wealth Advantage", "description": "MIP 10", "domicile": "sgd", "paymentTermYears": 10, "sourceType": "cash", "provider": { "name": "Great Eastern" } },
+  { "id": 5, "name": "Wealth Voyage", "description": "MIP 25", "domicile": "sgd", "paymentTermYears": 25, "sourceType": "cash", "provider": { "name": "HSBC Life" } },
+  { "id": 6, "name": "InvestReady III", "description": "USD MIP 10", "domicile": "usd", "paymentTermYears": 10, "sourceType": "cash", "provider": { "name": "Manulife" } }
+]
