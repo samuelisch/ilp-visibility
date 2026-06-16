@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -11,5 +12,10 @@ export default defineConfig({
       // No rewrite: NestJS serves under the /api prefix, so the path passes through unchanged.
       '/api': { target: 'http://localhost:3000', changeOrigin: true },
     },
+  },
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/vitest.setup.ts'],
+    include: ['src/**/*.test.{ts,tsx}'],
   },
 })
