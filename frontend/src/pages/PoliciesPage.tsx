@@ -2,9 +2,13 @@ import { useMemo, useState } from 'react'
 import { usePolicies } from '../hooks/usePolicies'
 import { fetchPolicyDetail } from '../api/policies'
 import { PoliciesTable } from '../components/PoliciesTable'
-
-type SortField = 'name' | 'mip'
-type SortDir = 'asc' | 'desc'
+import {
+  selectVisibleRows,
+  deriveProviderOptions,
+  ALL_PROVIDERS,
+  type SortField,
+  type SortDir,
+} from '../lib/policies'
 
 const SORT_OPTIONS: {
   value: string
@@ -18,8 +22,6 @@ const SORT_OPTIONS: {
   { value: 'mip-desc', label: 'MIP (longest first)', field: 'mip', dir: 'desc' },
 ]
 
-const ALL_PROVIDERS = 'all'
-
 export function PoliciesPage() {
   const { data, isLoading, isError } = usePolicies()
   const [search, setSearch] = useState('')
@@ -27,48 +29,19 @@ export function PoliciesPage() {
   const [sort, setSort] = useState(SORT_OPTIONS[0].value)
 
   // Provider dropdown options, derived client-side from the fetched data.
-  const providerNames = useMemo(() => {
-    if (!data) return []
-    return Array.from(new Set(data.map((p) => p.provider.name))).sort((a, b) =>
-      a.localeCompare(b),
-    )
-  }, [data])
+  const providerNames = useMemo(
+    () => (data ? deriveProviderOptions(data) : []),
+    [data],
+  )
 
   // Filter (search + provider) then sort — all client-side over the full list.
   const visibleRows = useMemo(() => {
     if (!data) return []
-    const selected =
-      SORT_OPTIONS.find((o) => o.value === sort) ?? SORT_OPTIONS[0]
-    const q = search.trim().toLowerCase()
-
-    const filtered = data.filter((p) => {
-      const matchesSearch =
-        q === '' ||
-        p.name.toLowerCase().includes(q) ||
-        p.description.toLowerCase().includes(q)
-      const matchesProvider =
-        providerFilter === ALL_PROVIDERS || p.provider.name === providerFilter
-      return matchesSearch && matchesProvider
-    })
-
-    return [...filtered].sort((a, b) => {
-      if (selected.field === 'name') {
-        const cmp = a.name.localeCompare(b.name)
-        return selected.dir === 'asc' ? cmp : -cmp
-      }
-
-      // MIP sort: single-premium rows (null) always sort last, regardless of
-      // direction; ties fall back to name for a stable, readable order.
-      const aMip = a.paymentTermYears
-      const bMip = b.paymentTermYears
-      if (aMip === null && bMip === null) return a.name.localeCompare(b.name)
-      if (aMip === null) return 1
-      if (bMip === null) return -1
-      if (aMip !== bMip) {
-        const cmp = aMip - bMip
-        return selected.dir === 'asc' ? cmp : -cmp
-      }
-      return a.name.localeCompare(b.name)
+    const selected = SORT_OPTIONS.find((o) => o.value === sort) ?? SORT_OPTIONS[0]
+    return selectVisibleRows(data, {
+      search,
+      providerFilter,
+      sort: { field: selected.field, dir: selected.dir },
     })
   }, [data, search, providerFilter, sort])
 
