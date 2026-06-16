@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:pw": "playwright test"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.101.0",
