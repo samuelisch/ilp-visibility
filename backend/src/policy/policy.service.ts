@@ -1,18 +1,33 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma.service.js';
-import { Policy } from '../generated/prisma/client.js';
+import { Prisma } from '../generated/prisma/client.js';
+
+const policyListSelect = {
+  id: true,
+  name: true,
+  description: true,
+  domicile: true,
+  paymentTermYears: true,
+  sourceType: true,
+  provider: { select: { name: true } },
+} satisfies Prisma.PolicySelect;
+
+export type PolicyListItem = Prisma.PolicyGetPayload<{
+  select: typeof policyListSelect;
+}>;
 
 @Injectable()
 export class PolicyService {
   constructor(private prisma: PrismaService) {}
 
-  async findAll(q?: string, provider?: number): Promise<Policy[]> {
+  async findAll(q?: string, provider?: number): Promise<PolicyListItem[]> {
     const trimmedQ = q?.trim();
     return await this.prisma.policy.findMany({
       where: {
         ...(trimmedQ && { name: { contains: trimmedQ, mode: 'insensitive' } }),
         ...(provider !== undefined && { providerId: provider }),
       },
+      select: policyListSelect,
     });
   }
 

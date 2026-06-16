@@ -25,7 +25,28 @@ describe('PolicyService', () => {
   });
 
   describe('findAll', () => {
-    const policies = [{ id: 1, name: 'Test Policy' }];
+    const policies = [
+      {
+        id: 1,
+        name: 'Test Policy',
+        description: 'test',
+        domicile: 'sgd',
+        paymentTermYears: null,
+        sourceType: 'cash_or_srs',
+        provider: { name: 'Test Insurer' },
+      },
+    ];
+
+    // Mirrors the select in policy.service.ts; every findAll query must request it.
+    const listSelect = {
+      id: true,
+      name: true,
+      description: true,
+      domicile: true,
+      paymentTermYears: true,
+      sourceType: true,
+      provider: { select: { name: true } },
+    };
 
     it('should query with no where clause when no filters provided', async () => {
       mockPrisma.policy.findMany.mockResolvedValue(policies);
@@ -33,6 +54,7 @@ describe('PolicyService', () => {
       expect(await policyService.findAll()).toBe(policies);
       expect(mockPrisma.policy.findMany).toHaveBeenCalledWith({
         where: {},
+        select: listSelect,
       });
     });
 
@@ -44,6 +66,7 @@ describe('PolicyService', () => {
         where: {
           name: { contains: 'elite', mode: 'insensitive' },
         },
+        select: listSelect,
       });
     });
 
@@ -55,6 +78,7 @@ describe('PolicyService', () => {
         where: {
           name: { contains: 'elite', mode: 'insensitive' },
         },
+        select: listSelect,
       });
     });
 
@@ -64,6 +88,7 @@ describe('PolicyService', () => {
       expect(await policyService.findAll('   ')).toBe(policies);
       expect(mockPrisma.policy.findMany).toHaveBeenCalledWith({
         where: {},
+        select: listSelect,
       });
     });
 
@@ -75,6 +100,7 @@ describe('PolicyService', () => {
         where: {
           providerId: 1,
         },
+        select: listSelect,
       });
     });
 
@@ -87,6 +113,7 @@ describe('PolicyService', () => {
           name: { contains: 'elite', mode: 'insensitive' },
           providerId: 1,
         },
+        select: listSelect,
       });
     });
 
@@ -98,6 +125,7 @@ describe('PolicyService', () => {
         where: {
           providerId: 0,
         },
+        select: listSelect,
       });
     });
   });
