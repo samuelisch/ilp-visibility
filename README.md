@@ -80,11 +80,11 @@ A `Policy` has one or more sub-accounts (e.g. Initial/Accumulation Units). Fees 
 - Backend migrated to ESM; PrismaService wired up via a `@Global()` module.
 - Postgres schema (8 tables, CHECK constraints, composite FKs, unique constraints) managed by Prisma migrations.
 - `PolicyModule` live:
-  - `GET /policies` — list with optional `?q=` (case-insensitive name search) and `?provider=` (provider-ID filter).
-  - `GET /policies/:id` — full nested policy tree; 404 for missing, 400 for non-integer IDs.
+  - `GET /api/policies` — list with optional `?q=` (case-insensitive name search) and `?provider=` (provider-ID filter).
+  - `GET /api/policies/:id` — full nested policy tree; 404 for missing, 400 for non-integer IDs.
 - Controller + service unit tests under Vitest.
 - Seed JSON authored for **8 providers / ~157 variants** via per-family agent fan-out: AIA (16), Great Eastern (16), Prudential (21), HSBC Life (16), Singlife (10), FWD (16), Etiqa (31), Manulife (15). Interpretation decisions ratified in DECISIONS 019–026.
-- **AIA (16 variants)** loaded into the database and serving from `GET /policies`.
+- **AIA (16 variants)** loaded into the database and serving from `GET /api/policies`.
 
 **Not yet built**
 - Loading the other 7 providers' seed JSON into the DB (authored, not yet seeded).
