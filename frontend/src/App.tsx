@@ -1,3 +1,5 @@
+import { PoliciesPage } from './pages/PoliciesPage'
+
 function App() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
@@ -11,7 +13,7 @@ function App() {
       </header>
 
       <main className="mx-auto max-w-5xl px-6 py-8">
-        {/* Policies page mounts here (T6). */}
+        <PoliciesPage />
       </main>
     </div>
   )
