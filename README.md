@@ -2,7 +2,7 @@
 
 A fee-transparency tool for Singapore **Investment-Linked Policies (ILPs)**. It extracts the fee and surrender-charge tables buried in provider Product Summary PDFs, models them against a shared schema, and surfaces them as plain, comparable figures — including a projected account-value and surrender-value illustration.
 
-The target user is a consumer who already holds (or is being sold) an ILP and starts from the *document*, not from a spreadsheet. The main existing tool, SGFIREPlanner, serves sophisticated users willing to enter charges by hand; no tool today does document-based extraction.
+The target user is a consumer who already holds (or is being sold) an ILP and starts from the _document_, not from a spreadsheet. The main existing tool, SGFIREPlanner, serves sophisticated users willing to enter charges by hand; no tool today does document-based extraction.
 
 > This is a learning-first project: the build doubles as a deep dive into backend/database/architecture reasoning. Every non-trivial decision is recorded with its rationale in [`DECISIONS.md`](./DECISIONS.md).
 
@@ -19,14 +19,14 @@ The target user is a consumer who already holds (or is being sold) an ILP and st
 
 ## Tech Stack
 
-| Layer | Choice | Notes |
-|---|---|---|
-| Backend | **NestJS 11** (TypeScript, ESM) | The deliberate learning surface — modules, controllers, services, DI |
-| ORM / DB | **Prisma 7** + **PostgreSQL** | `prisma-client` generator, `@prisma/adapter-pg`; models map to snake_case tables via `@@map`/`@map` |
-| Frontend | **React 19** + **Vite 8** (TypeScript) | Currently the scaffold only; kept familiar so it isn't a learning variable |
-| Tests | **Vitest 4** | Migrated from Jest for native ESM |
-| Extraction | **Python** + **pdfplumber** | Offline script; JSON is the boundary between Python and the web layer |
-| Tooling | **pnpm** workspaces, shared root ESLint/Prettier/TS config | Monorepo with strict per-workspace dependency isolation |
+| Layer      | Choice                                                     | Notes                                                                                               |
+| ---------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Backend    | **NestJS 11** (TypeScript, ESM)                            | The deliberate learning surface — modules, controllers, services, DI                                |
+| ORM / DB   | **Prisma 7** + **PostgreSQL**                              | `prisma-client` generator, `@prisma/adapter-pg`; models map to snake_case tables via `@@map`/`@map` |
+| Frontend   | **React 19** + **Vite 8** (TypeScript)                     | Currently the scaffold only; kept familiar so it isn't a learning variable                          |
+| Tests      | **Vitest 4**                                               | Migrated from Jest for native ESM                                                                   |
+| Extraction | **Python** + **pdfplumber**                                | Offline script; JSON is the boundary between Python and the web layer                               |
+| Tooling    | **pnpm** workspaces, shared root ESLint/Prettier/TS config | Monorepo with strict per-workspace dependency isolation                                             |
 
 End-to-end TypeScript so backend data-model types can be shared with the frontend without codegen.
 
@@ -76,6 +76,7 @@ A `Policy` has one or more sub-accounts (e.g. Initial/Accumulation Units). Fees 
 **Phase: build.** Research is complete (10 providers, ~95 PDFs analysed); the v1 data model is finalised and stress-tested; v1 scope is locked.
 
 **Done**
+
 - Monorepo scaffolded; both apps build, lint, typecheck.
 - Backend migrated to ESM; PrismaService wired up via a `@Global()` module.
 - Postgres schema (8 tables, CHECK constraints, composite FKs, unique constraints) managed by Prisma migrations.
@@ -87,6 +88,7 @@ A `Policy` has one or more sub-accounts (e.g. Initial/Accumulation Units). Fees 
 - **AIA (16 variants)** loaded into the database and serving from `GET /api/policies`.
 
 **Not yet built**
+
 - Loading the other 7 providers' seed JSON into the DB (authored, not yet seeded).
 - Seed JSON for the final 2 providers: **NTUC Income, Tokio Marine**.
 - The **illustration engine** — monthly ACV recurrence, fee deduction, surrender charts (design locked in DECISIONS 004–007).
