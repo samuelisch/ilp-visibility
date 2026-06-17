@@ -1,7 +1,10 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, useReducedMotion } from 'motion/react';
 import { usePolicies } from '../hooks/usePolicies';
-import { PoliciesTable } from '../components/PoliciesTable';
+import { PolicyCard } from '../components/PolicyCard';
+import { Field, inputClass } from '../components/ui/Field';
+import { SegmentedControl } from '../components/ui/SegmentedControl';
 import {
   selectVisibleRows,
   deriveProviderOptions,
@@ -16,14 +19,15 @@ const SORT_OPTIONS: {
   field: SortField;
   dir: SortDir;
 }[] = [
-  { value: 'name-asc', label: 'Name (A–Z)', field: 'name', dir: 'asc' },
-  { value: 'name-desc', label: 'Name (Z–A)', field: 'name', dir: 'desc' },
-  { value: 'mip-asc', label: 'MIP (shortest first)', field: 'mip', dir: 'asc' },
-  { value: 'mip-desc', label: 'MIP (longest first)', field: 'mip', dir: 'desc' },
+  { value: 'name-asc', label: 'A–Z', field: 'name', dir: 'asc' },
+  { value: 'name-desc', label: 'Z–A', field: 'name', dir: 'desc' },
+  { value: 'mip-asc', label: 'MIP ↑', field: 'mip', dir: 'asc' },
+  { value: 'mip-desc', label: 'MIP ↓', field: 'mip', dir: 'desc' },
 ];
 
 export function PoliciesPage() {
   const navigate = useNavigate();
+  const reduceMotion = useReducedMotion();
   const { data, isLoading, isError } = usePolicies();
   const [search, setSearch] = useState('');
   const [providerFilter, setProviderFilter] = useState(ALL_PROVIDERS);
@@ -46,25 +50,30 @@ export function PoliciesPage() {
   const onRowClick = (id: number) => navigate(`/policies/${id}`);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
+      <div>
+        <h2 className="font-display text-3xl text-ink">Every plan, every fee — in plain sight.</h2>
+        <p className="mt-1 text-muted">
+          Browse Singapore’s investment-linked policies and see what they really cost over time.
+        </p>
+      </div>
+
       <div className="flex flex-wrap items-end gap-3">
-        <label className="min-w-50 flex-1 text-sm">
-          <span className="mb-1 block font-medium text-gray-700">Search</span>
+        <Field label="Search" className="min-w-50 flex-1">
           <input
             type="search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Policy name or variant…"
-            className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-gray-400 focus:outline-none"
+            className={inputClass}
           />
-        </label>
+        </Field>
 
-        <label className="text-sm">
-          <span className="mb-1 block font-medium text-gray-700">Insurer</span>
+        <Field label="Insurer" className="w-full sm:w-56">
           <select
             value={providerFilter}
             onChange={(e) => setProviderFilter(e.target.value)}
-            className="rounded-md border border-gray-300 px-3 py-2 focus:border-gray-400 focus:outline-none"
+            className={inputClass}
           >
             <option value={ALL_PROVIDERS}>All insurers</option>
             {providerNames.map((name) => (
@@ -73,42 +82,42 @@ export function PoliciesPage() {
               </option>
             ))}
           </select>
-        </label>
+        </Field>
 
-        <label className="text-sm">
-          <span className="mb-1 block font-medium text-gray-700">Sort by</span>
-          <select
-            value={sort}
-            onChange={(e) => setSort(e.target.value)}
-            className="rounded-md border border-gray-300 px-3 py-2 focus:border-gray-400 focus:outline-none"
-          >
-            {SORT_OPTIONS.map((o) => (
-              <option key={o.value} value={o.value}>
-                {o.label}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className="text-sm">
+          <span className="mb-1 block font-medium text-muted">Sort by</span>
+          <SegmentedControl options={SORT_OPTIONS} value={sort} onChange={setSort} />
+        </div>
       </div>
 
-      {isLoading && <p className="text-sm text-gray-500">Loading policies…</p>}
+      {isLoading && <p className="text-sm text-muted">Loading policies…</p>}
 
       {isError && (
-        <p className="text-sm text-red-600">
+        <p className="text-sm text-accent">
           Couldn’t load policies. Check the backend is running and try again.
         </p>
       )}
 
       {!isLoading && !isError && (
         <>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-muted">
             {visibleRows.length} {visibleRows.length === 1 ? 'policy' : 'policies'}
           </p>
           {visibleRows.length === 0 ? (
-            <p className="text-sm text-gray-500">No policies match your filters.</p>
+            <p className="text-sm text-muted">No policies match your filters.</p>
           ) : (
-            <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-              <PoliciesTable policies={visibleRows} onRowClick={onRowClick} />
+            <div role="list" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {visibleRows.map((p, i) => (
+                <motion.div
+                  role="listitem"
+                  key={p.id}
+                  initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: reduceMotion ? 0 : Math.min(i, 12) * 0.03 }}
+                >
+                  <PolicyCard policy={p} onClick={onRowClick} />
+                </motion.div>
+              ))}
             </div>
           )}
         </>
