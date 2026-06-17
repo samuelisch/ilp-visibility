@@ -9,6 +9,7 @@ import { SurrenderGraph } from '../components/SurrenderGraph';
 import { FeeYearTable } from '../components/FeeYearTable';
 import { SurrenderFeeTable } from '../components/SurrenderFeeTable';
 import { formatMip, formatDomicile, formatSourceType } from '../lib/format';
+import { formatFeeBase, formatChargeSchedule } from '../lib/feeLabels';
 import { Card } from '../components/ui/Card';
 import { Pill } from '../components/ui/Pill';
 import { Field, inputClass } from '../components/ui/Field';
@@ -146,18 +147,20 @@ function PolicyProjection({ detail }: { detail: PolicyDetail }) {
             {allFees.map((f) => (
               <tr key={f.id} className="border-t border-line">
                 <td className="py-1.5 pr-4 text-ink">{f.description}</td>
-                <td className="py-1.5 pr-4 text-muted">{f.feeType}</td>
+                <td className="py-1.5 pr-4 text-muted">
+                  {f.flatFeeAmount != null ? 'Flat fee' : formatFeeBase(f.feeType)}
+                </td>
                 <td className="tnum py-1.5 text-ink">
                   {!f.isFeeAvailable ? (
                     <Pill>undisclosed</Pill>
                   ) : f.flatFeeAmount != null ? (
                     `$${f.flatFeeAmount}/mo`
                   ) : f.chargeSchedule === 'term' ? (
-                    'year-by-year'
+                    formatChargeSchedule('term')
                   ) : f.chargePercentage != null ? (
-                    `${f.chargePercentage}% (${f.chargeSchedule})`
+                    `${f.chargePercentage}% · ${formatChargeSchedule(f.chargeSchedule)}`
                   ) : (
-                    f.chargeSchedule
+                    formatChargeSchedule(f.chargeSchedule)
                   )}
                 </td>
               </tr>
