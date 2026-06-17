@@ -1,58 +1,55 @@
-import { useMemo, useState } from 'react'
-import { usePolicies } from '../hooks/usePolicies'
-import { fetchPolicyDetail } from '../api/policies'
-import { PoliciesTable } from '../components/PoliciesTable'
+import { useMemo, useState } from 'react';
+import { usePolicies } from '../hooks/usePolicies';
+import { fetchPolicyDetail } from '../api/policies';
+import { PoliciesTable } from '../components/PoliciesTable';
 import {
   selectVisibleRows,
   deriveProviderOptions,
   ALL_PROVIDERS,
   type SortField,
   type SortDir,
-} from '../lib/policies'
+} from '../lib/policies';
 
 const SORT_OPTIONS: {
-  value: string
-  label: string
-  field: SortField
-  dir: SortDir
+  value: string;
+  label: string;
+  field: SortField;
+  dir: SortDir;
 }[] = [
   { value: 'name-asc', label: 'Name (A–Z)', field: 'name', dir: 'asc' },
   { value: 'name-desc', label: 'Name (Z–A)', field: 'name', dir: 'desc' },
   { value: 'mip-asc', label: 'MIP (shortest first)', field: 'mip', dir: 'asc' },
   { value: 'mip-desc', label: 'MIP (longest first)', field: 'mip', dir: 'desc' },
-]
+];
 
 export function PoliciesPage() {
-  const { data, isLoading, isError } = usePolicies()
-  const [search, setSearch] = useState('')
-  const [providerFilter, setProviderFilter] = useState(ALL_PROVIDERS)
-  const [sort, setSort] = useState(SORT_OPTIONS[0].value)
+  const { data, isLoading, isError } = usePolicies();
+  const [search, setSearch] = useState('');
+  const [providerFilter, setProviderFilter] = useState(ALL_PROVIDERS);
+  const [sort, setSort] = useState(SORT_OPTIONS[0].value);
 
   // Provider dropdown options, derived client-side from the fetched data.
-  const providerNames = useMemo(
-    () => (data ? deriveProviderOptions(data) : []),
-    [data],
-  )
+  const providerNames = useMemo(() => (data ? deriveProviderOptions(data) : []), [data]);
 
   // Filter (search + provider) then sort — all client-side over the full list.
   const visibleRows = useMemo(() => {
-    if (!data) return []
-    const selected = SORT_OPTIONS.find((o) => o.value === sort) ?? SORT_OPTIONS[0]
+    if (!data) return [];
+    const selected = SORT_OPTIONS.find((o) => o.value === sort) ?? SORT_OPTIONS[0];
     return selectVisibleRows(data, {
       search,
       providerFilter,
       sort: { field: selected.field, dir: selected.dir },
-    })
-  }, [data, search, providerFilter, sort])
+    });
+  }, [data, search, providerFilter, sort]);
 
   const onRowClick = async (id: number) => {
     try {
-      const detail = await fetchPolicyDetail(id)
-      console.log('policy detail', id, detail)
+      const detail = await fetchPolicyDetail(id);
+      console.log('policy detail', id, detail);
     } catch (err) {
-      console.error('failed to fetch policy detail', id, err)
+      console.error('failed to fetch policy detail', id, err);
     }
-  }
+  };
 
   return (
     <div className="space-y-6">
@@ -114,9 +111,7 @@ export function PoliciesPage() {
             {visibleRows.length} {visibleRows.length === 1 ? 'policy' : 'policies'}
           </p>
           {visibleRows.length === 0 ? (
-            <p className="text-sm text-gray-500">
-              No policies match your filters.
-            </p>
+            <p className="text-sm text-gray-500">No policies match your filters.</p>
           ) : (
             <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
               <PoliciesTable policies={visibleRows} onRowClick={onRowClick} />
@@ -125,5 +120,5 @@ export function PoliciesPage() {
         </>
       )}
     </div>
-  )
+  );
 }

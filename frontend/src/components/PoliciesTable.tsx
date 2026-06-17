@@ -1,9 +1,9 @@
-import type { PolicyListItem } from '../types/policy'
-import { formatPremiumType, formatProductSubtext } from '../lib/format'
+import type { PolicyListItem } from '../types/policy';
+import { formatPremiumType, formatProductSubtext } from '../lib/format';
 
 interface PoliciesTableProps {
-  policies: PolicyListItem[]
-  onRowClick: (id: number) => void
+  policies: PolicyListItem[];
+  onRowClick: (id: number) => void;
 }
 
 // Pure presentational table. Receives already-filtered, already-sorted rows;
@@ -27,17 +27,15 @@ export function PoliciesTable({ policies, onRowClick }: PoliciesTableProps) {
             onClick={() => onRowClick(policy.id)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault()
-                onRowClick(policy.id)
+                e.preventDefault();
+                onRowClick(policy.id);
               }
             }}
             className="cursor-pointer border-b border-gray-100 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none"
           >
             <td className="px-4 py-3">
               <div className="font-medium text-gray-900">{policy.name}</div>
-              <div className="text-xs text-gray-500">
-                {formatProductSubtext(policy)}
-              </div>
+              <div className="text-xs text-gray-500">{formatProductSubtext(policy)}</div>
             </td>
             <td className="px-4 py-3 text-gray-700">{policy.provider.name}</td>
             <td className="px-4 py-3 text-gray-700">
@@ -47,5 +45,5 @@ export function PoliciesTable({ policies, onRowClick }: PoliciesTableProps) {
         ))}
       </tbody>
     </table>
-  )
+  );
 }

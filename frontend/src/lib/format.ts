@@ -1,28 +1,26 @@
-import type { Domicile, PolicyListItem } from '../types/policy'
+import type { Domicile, PolicyListItem } from '../types/policy';
 
 // Single source of truth for value -> human label mappings used across the policies UI.
 
 export function formatDomicile(domicile: Domicile): string {
   switch (domicile) {
     case 'sgd':
-      return 'SGD'
+      return 'SGD';
     case 'usd':
-      return 'USD'
+      return 'USD';
   }
 }
 
 // `paymentTermYears === null` means a single-premium product (no recurring MIP).
 export function formatMip(paymentTermYears: number | null): string {
-  return paymentTermYears === null
-    ? 'Single premium'
-    : `${paymentTermYears}-year MIP`
+  return paymentTermYears === null ? 'Single premium' : `${paymentTermYears}-year MIP`;
 }
 
 export function formatPremiumType(paymentTermYears: number | null): string {
-  return paymentTermYears === null ? 'Single' : 'Regular'
+  return paymentTermYears === null ? 'Single' : 'Regular';
 }
 
 // Subtext under the policy name, e.g. "SGD · 25-year MIP" / "SGD · Single premium".
 export function formatProductSubtext(policy: PolicyListItem): string {
-  return `${formatDomicile(policy.domicile)} · ${formatMip(policy.paymentTermYears)}`
+  return `${formatDomicile(policy.domicile)} · ${formatMip(policy.paymentTermYears)}`;
 }
