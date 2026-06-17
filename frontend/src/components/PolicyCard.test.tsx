@@ -22,6 +22,7 @@ describe('PolicyCard', () => {
     expect(screen.getByText('Regular')).toBeInTheDocument();
     expect(screen.getByText('SGD')).toBeInTheDocument();
     expect(screen.getByText('20-year MIP')).toBeInTheDocument();
+    expect(screen.getByText('Cash')).toBeInTheDocument();
   });
   it('calls onClick with id on click and on Enter', async () => {
     const onClick = vi.fn();

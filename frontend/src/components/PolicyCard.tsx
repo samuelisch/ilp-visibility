@@ -1,5 +1,5 @@
 import type { PolicyListItem } from '../types/policy';
-import { formatPremiumType, formatDomicile, formatMip } from '../lib/format';
+import { formatPremiumType, formatDomicile, formatMip, formatSourceType } from '../lib/format';
 import { Card } from './ui/Card';
 import { Pill } from './ui/Pill';
 
@@ -32,6 +32,7 @@ export function PolicyCard({
           <Pill tone="accent">{formatPremiumType(policy.paymentTermYears)}</Pill>
           <Pill>{formatDomicile(policy.domicile)}</Pill>
           <Pill>{formatMip(policy.paymentTermYears)}</Pill>
+          <Pill>{formatSourceType(policy.sourceType)}</Pill>
         </div>
       </div>
     </Card>
