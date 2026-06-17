@@ -35,6 +35,7 @@ export class PolicyService {
     const policy = await this.prisma.policy.findUnique({
       where: { id },
       include: {
+        provider: { select: { name: true } },
         policyAccounts: {
           include: {
             policyAccountFees: {

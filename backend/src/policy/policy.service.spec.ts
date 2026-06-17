@@ -134,6 +134,7 @@ describe('PolicyService', () => {
     const fullPolicy = {
       id: 1,
       name: 'Test Policy',
+      provider: { name: 'Test Insurer' },
       policyAccounts: [],
       policyAccountFees: [],
       policyAccountSurrenderFees: [],
@@ -148,6 +149,7 @@ describe('PolicyService', () => {
       expect(mockPrisma.policy.findUnique).toHaveBeenCalledWith({
         where: { id: 1 },
         include: {
+          provider: { select: { name: true } },
           policyAccounts: {
             include: {
               policyAccountFees: {
