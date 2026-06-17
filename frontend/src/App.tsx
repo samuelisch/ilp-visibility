@@ -1,4 +1,6 @@
+import { Routes, Route } from 'react-router-dom';
 import { PoliciesPage } from './pages/PoliciesPage';
+import { PolicyDetailPage } from './pages/PolicyDetailPage';
 
 function App() {
   return (
@@ -11,7 +13,10 @@ function App() {
       </header>
 
       <main className="mx-auto max-w-5xl px-6 py-8">
-        <PoliciesPage />
+        <Routes>
+          <Route path="/" element={<PoliciesPage />} />
+          <Route path="/policies/:id" element={<PolicyDetailPage />} />
+        </Routes>
       </main>
     </div>
   );
