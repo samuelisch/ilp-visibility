@@ -1,9 +1,13 @@
 export interface YearRow {
   year: number;
-  premiumsPaid: number;
+  premiumsPaid: number; // cumulative
+  premiumPaidThisYear: number; // premium paid during this year
+  totalFeesThisYear: number; // premium charge + ongoing fees this year
+  earningsThisYear: number; // investment growth credited to net this year
   grossValue: number;
   netValue: number;
   surrenderFee: number;
+  surrenderRate: number; // contractual surrender % this year (0 if none)
 }
 export interface IllustrationResult {
   byYear: YearRow[];

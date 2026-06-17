@@ -5,9 +5,13 @@ import type { YearRow } from './types';
 const rows: YearRow[] = Array.from({ length: 40 }, (_, i) => ({
   year: i + 1,
   premiumsPaid: 1000 * (i + 1),
+  premiumPaidThisYear: 1000,
+  totalFeesThisYear: 50,
+  earningsThisYear: 0,
   grossValue: 1100 * (i + 1),
   netValue: 1050 * (i + 1),
   surrenderFee: i < 5 ? 100 : 0,
+  surrenderRate: i < 5 ? 10 : 0,
 }));
 
 describe('summarize', () => {

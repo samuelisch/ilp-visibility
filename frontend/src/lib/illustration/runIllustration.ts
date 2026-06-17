@@ -1,7 +1,7 @@
 import type { PolicyDetail, PolicyAccount } from '../../types/policy';
 import type { IllustrationInput, IllustrationResult, YearRow } from './types';
 import { feeForMonth } from './feeForMonth';
-import { surrenderFeeForYear } from './surrenderFeeForYear';
+import { surrenderFeeForYear, surrenderRateForYear } from './surrenderFeeForYear';
 
 const HORIZON = 40;
 
@@ -37,11 +37,21 @@ export function runIllustration(
 
   let premiumsPaid = 0;
   let notionalBase = 0;
+  // Per-year accumulators, reset each year start; power the year-table reconciliation:
+  // premiumPaidThisYear − totalFeesThisYear + earningsThisYear = Δ netValue.
+  let yearPremium = 0;
+  let yearFees = 0;
+  let yearEarnings = 0;
   const byYear: YearRow[] = [];
   const total = (arr: number[]) => arr.reduce((a, b) => a + b, 0);
 
   for (let month = 0; month < HORIZON * 12; month++) {
     const policyYear = Math.floor(month / 12) + 1;
+    if (month % 12 === 0) {
+      yearPremium = 0;
+      yearFees = 0;
+      yearEarnings = 0;
+    }
     const premiumDue = isSingle ? month === 0 : policyYear <= (ppt ?? HORIZON);
 
     if (premiumDue) {
@@ -55,13 +65,17 @@ export function runIllustration(
       );
       const charge = premiumChargeRate(accounts[idx], policyYear);
       premiumsPaid += input.premium;
+      yearPremium += input.premium;
+      yearFees += input.premium * (charge / 100); // premium charge is a fee
       net[idx] += input.premium * (1 - charge / 100);
       gross[idx] += input.premium;
     }
 
     // grow
     for (let i = 0; i < accounts.length; i++) {
+      const before = net[i];
       net[i] *= 1 + r;
+      yearEarnings += net[i] - before;
       gross[i] *= 1 + r;
     }
 
@@ -74,7 +88,7 @@ export function runIllustration(
     // ongoing fees (net only) — account-level then policy-level (pro-rata)
     for (let i = 0; i < accounts.length; i++) {
       for (const fee of accounts[i].policyAccountFees) {
-        net[i] -= feeForMonth(fee, {
+        const f = feeForMonth(fee, {
           policyYear,
           accountValue: net[i],
           annualisedPremium,
@@ -82,6 +96,8 @@ export function runIllustration(
           notionalBase,
           paymentTermYears: ppt,
         });
+        net[i] -= f;
+        yearFees += f;
       }
     }
     const tNet = total(net);
@@ -95,6 +111,7 @@ export function runIllustration(
         paymentTermYears: ppt,
       });
       if (tNet > 0) for (let i = 0; i < net.length; i++) net[i] -= charge * (net[i] / tNet);
+      yearFees += Math.min(charge, tNet); // amount actually removed across accounts
     }
 
     // year-end snapshot
@@ -103,9 +120,17 @@ export function runIllustration(
       byYear.push({
         year: policyYear,
         premiumsPaid,
+        premiumPaidThisYear: yearPremium,
+        totalFeesThisYear: yearFees,
+        earningsThisYear: yearEarnings,
         grossValue: total(gross),
         netValue: netNow,
         surrenderFee: surrenderFeeForYear(allSurrender, {
+          policyYear,
+          accountValue: netNow,
+          cumulativePremiumsPaid: premiumsPaid,
+        }),
+        surrenderRate: surrenderRateForYear(allSurrender, {
           policyYear,
           accountValue: netNow,
           cumulativePremiumsPaid: premiumsPaid,
