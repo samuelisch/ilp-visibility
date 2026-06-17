@@ -67,10 +67,8 @@ test('shows the error state when the request fails', async ({ page }) => {
   });
 });
 
-test('clicking a row fetches detail and logs it', async ({ page }) => {
-  const messages: string[] = [];
-  page.on('console', (msg) => messages.push(msg.text()));
+test('clicking a row navigates to its detail page', async ({ page }) => {
   await page.goto('/');
   await page.getByText('ManuInvest Duo').click();
-  await expect.poll(() => messages.some((m) => m.includes('policy detail'))).toBe(true);
+  await expect(page).toHaveURL(/\/policies\/3$/);
 });

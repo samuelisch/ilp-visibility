@@ -1,0 +1,55 @@
+{
+  "id": 3,
+  "name": "ManuInvest Duo",
+  "description": "MIP 20",
+  "domicile": "sgd",
+  "paymentTermYears": 20,
+  "sourceType": "cash",
+  "provider": { "name": "Manulife" },
+  "policyAccounts": [
+    {
+      "id": 1,
+      "description": "main account",
+      "allocationFromPolicyYear": 1,
+      "allocationTillPolicyYear": null,
+      "premiumChargePercentage": "5.00",
+      "premiumAllocationType": "recurring",
+      "termEndBehaviour": null,
+      "policyAccountPremiumAllocationTerms": [],
+      "policyAccountFees": [
+        {
+          "id": 10,
+          "description": "Admin Charge",
+          "chargeSchedule": "perpetual",
+          "activeFromPolicyYear": 1,
+          "termEndBehaviour": null,
+          "recurringLength": null,
+          "feeType": "account_value",
+          "notionalPercentage": null,
+          "isFeeAvailable": true,
+          "chargePercentage": "1.50",
+          "flatFeeAmount": null,
+          "minPremium": null,
+          "maxPremium": null,
+          "policyAccountFeeTerms": []
+        }
+      ],
+      "policyAccountSurrenderFees": [
+        {
+          "id": 20,
+          "feeType": "account_value",
+          "termEndBehaviour": "stop",
+          "policyAccountSurrenderFeeTerms": [
+            { "policyYear": 1, "chargePercentage": "8.00" },
+            { "policyYear": 2, "chargePercentage": "6.00" },
+            { "policyYear": 3, "chargePercentage": "4.00" },
+            { "policyYear": 4, "chargePercentage": "2.00" },
+            { "policyYear": 5, "chargePercentage": "1.00" }
+          ]
+        }
+      ]
+    }
+  ],
+  "policyAccountFees": [],
+  "policyAccountSurrenderFees": []
+}
