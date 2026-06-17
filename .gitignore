@@ -25,3 +25,5 @@ vite.config.ts.timestamp-*
 .starter-research
 /docs
 /pdfs
+# superpowers brainstorm visual-companion scratch
+.superpowers/
