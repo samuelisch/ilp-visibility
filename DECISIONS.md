@@ -388,3 +388,22 @@ React Query (TanStack Query) is the v1 frontend data layer, chosen over hand-rol
 Configuration (`QueryClient` defaults): **`staleTime` and `gcTime` both 1 hour**, `refetchOnWindowFocus: false`. Policy data is effectively static (changes ~yearly when providers republish), so within an hour, navigating back to the index serves instantly from cache with no refetch; after an hour the inactive cache is garbage-collected and the next visit refetches — a deliberate, cheap freshness floor. Window-focus refetch is off for the same reason; more interactive endpoints can override per-query with shorter times later.
 
 Caveat: React Query's cache is **in-memory** — it survives in-SPA navigation but **not** a full page reload / browser restart. Cross-reload persistence would need `persistQueryClient` + a storage persister, out of scope for v1. The list query key is stable (`['policies']`) because filtering is client-side; server-side filtering would fold filter params into the key. _Decided; not yet implemented._
+
+## 037 — Policy detail page & on-frontend illustration engine — 2026-06-17
+
+The `/policies/:id` detail page projects a chosen policy over 40 years; the engine runs on the FE (DEC 004–007). Product/UX decisions ratified during design:
+
+- **Inputs:** **monthly** premium for regular-premium products (default S$400/mo), **single** premium for SP products (default S$10,000) — the engine reads single-vs-regular from `premiumAllocationType`. A **3% / 8%** return toggle (DEC 005), both pre-computed and cached, default 3%.
+- **Horizon:** fixed **40 years** for every policy; the MIP (`paymentTermYears`) is shaded. Premiums paid monthly through the MIP, then growth + fees continue to year 40.
+- **Two graphs:** (1) premiums-paid · gross · net value — the gross↔net gap is fees, where **gross = every premium fully invested at the return rate with zero charges**; (2) the **surrender fee** (`$ = net × rate`) vs net value, which falls to zero when the surrender charge ends (no separate marker).
+- **Excluded fees → bottom disclaimer, no manual input in v1:** COI/insurance and sub-fund/fund-layer charges (DEC 027/028), undisclosed-rate fees (`isFeeAvailable = false`), and `basic_sum_assured` fees are omitted from the projection and named in a disclaimer. USD / premium-band-dependent products show a "not available in v1" notice instead of a (misleading) projection.
+- **Routing:** react-router (`/policies/:id`, deep-linkable). `findOne` extended to include `provider:{name}`. **Charts: Recharts** — React-native, and its built-in `<Tooltip>` already gives hover-to-see-the-year's-figures (the planned enhancement is effectively free).
+- **Engine structure:** pure `lib/illustration/` (`runIllustration`/`feeForMonth`/`surrenderFeeForYear`/`summarize`), heavily unit-tested; multi-account surrender approximated on total net value (documented). Monthly premium reconciles with DEC 029 because all schedules are policy-year-keyed and `annual_premium` bases use monthly×12.
+
+## 038 — Frontend formatting & pre-commit enforcement — 2026-06-17
+
+`prettier-plugin-tailwindcss` (deterministic class ordering, v4 `tailwindStylesheet` pointer), a repo-wide Prettier baseline, the generated Prisma client excluded from Prettier (`.prettierignore`), and a **husky + lint-staged pre-commit hook** running `prettier --write` on staged files so commits land clean. Local commands only — CI-ready, no pipeline yet. Runner separation: FE Vitest owns `src/**/*.test.{ts,tsx}`, Playwright owns `e2e/**/*.spec.ts`, so the two never collide.
+
+## 039 — UI design system: "warm & calm" (planned) — 2026-06-17
+
+The shipped v1 UI was generic Tailwind grays + system font. Ratified overhaul direction: **warm & calm** — a cream/ink palette + clay accent + calm-teal data colors as Tailwind v4 `@theme` tokens; type pairing **Fraunces** (display) + **Hanken Grotesk** (body, `tabular-nums` figures), self-hosted via Fontsource; the landing table becomes a soft **`PolicyCard`** grid; shared UI primitives (`Card`/`Pill`/`Button`/`Field`/`SegmentedControl`/`StatCard`) that also encapsulate Tailwind (the "extract components, not class strings" move); **restrained motion** (`motion` lib — one staggered reveal, hover lift, gentle chart draw-on, respecting `prefers-reduced-motion`). The detail page is re-themed in place (already built). Tickets: `docs/superpowers/plans/fe/open/ui-overhaul/` (U1–U4) + `qa/open/ui-overhaul/` (QU1); design source `~/.claude/plans/now-i-want-to-sprightly-wave.md`. **Decided; not yet implemented.**
