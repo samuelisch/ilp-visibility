@@ -7,6 +7,11 @@ import { omittedFeeNotes } from '../lib/feeDisclosure';
 import { FeeGraph } from '../components/FeeGraph';
 import { SurrenderGraph } from '../components/SurrenderGraph';
 import { formatMip, formatDomicile } from '../lib/format';
+import { Card } from '../components/ui/Card';
+import { Pill } from '../components/ui/Pill';
+import { Field, inputClass } from '../components/ui/Field';
+import { SegmentedControl } from '../components/ui/SegmentedControl';
+import { StatCard } from '../components/ui/StatCard';
 import type { PolicyDetail } from '../types/policy';
 
 const money = (v: number) => `$${Math.round(v).toLocaleString()}`;
@@ -16,9 +21,9 @@ export function PolicyDetailPage() {
   const numericId = Number(id);
   const { data, isLoading, isError } = usePolicyDetail(numericId);
 
-  if (Number.isNaN(numericId)) return <p className="text-red-600">Invalid policy id.</p>;
-  if (isLoading) return <p className="text-sm text-gray-500">Loading policy…</p>;
-  if (isError || !data) return <p className="text-sm text-red-600">Couldn’t load this policy.</p>;
+  if (Number.isNaN(numericId)) return <p className="text-accent">Invalid policy id.</p>;
+  if (isLoading) return <p className="text-sm text-muted">Loading policy…</p>;
+  if (isError || !data) return <p className="text-sm text-accent">Couldn’t load this policy.</p>;
 
   // v1 scope: USD and premium-band products are excluded from projection.
   const bandFiltered = data.policyAccounts.some((a) =>
@@ -28,22 +33,22 @@ export function PolicyDetailPage() {
 
   return (
     <div className="space-y-6">
-      <Link to="/" className="text-sm text-blue-600 hover:underline">
+      <Link to="/" className="text-sm text-accent hover:underline">
         ← All policies
       </Link>
       <header>
-        <h1 className="text-xl font-semibold text-gray-900">{data.name}</h1>
-        <p className="text-sm text-gray-500">
+        <h1 className="font-display text-2xl text-ink">{data.name}</h1>
+        <p className="text-sm text-muted">
           {data.provider.name} · {data.description} · {formatDomicile(data.domicile)} ·{' '}
           {formatMip(data.paymentTermYears)}
         </p>
       </header>
 
       {outOfScope ? (
-        <p className="rounded-md bg-amber-50 p-3 text-sm text-amber-800">
+        <Card className="border-accent-soft bg-accent-soft/50 text-ink">
           This product isn’t available in v1 (USD or premium-band-dependent). Projection is disabled
           to avoid a misleading estimate.
-        </p>
+        </Card>
       ) : (
         // Body lives in its own component so the engine hooks run unconditionally
         // (after the early returns above, hooks here would violate the Rules of Hooks).
@@ -67,94 +72,83 @@ function PolicyProjection({ detail }: { detail: PolicyDetail }) {
   ];
 
   return (
-    <>
+    <div className="space-y-6">
       <div className="flex flex-wrap items-end gap-4">
-        <label className="text-sm">
-          <span className="mb-1 block font-medium text-gray-700">
-            {isSingle ? 'Single premium (S$)' : 'Monthly premium (S$)'}
-          </span>
+        <Field label={isSingle ? 'Single premium (S$)' : 'Monthly premium (S$)'} className="w-40">
           <input
             type="number"
             min={0}
             value={premium}
             onChange={(e) => setPremium(Number(e.target.value) || 0)}
-            className="w-40 rounded-md border border-gray-300 px-3 py-2 focus:outline-none"
+            className={`${inputClass} tnum`}
           />
-        </label>
+        </Field>
         <div className="text-sm">
-          <span className="mb-1 block font-medium text-gray-700">Return</span>
-          {([3, 8] as const).map((rk) => (
-            <button
-              key={rk}
-              type="button"
-              onClick={() => setRate(rk)}
-              className={`mr-2 rounded-md border px-3 py-2 ${
-                rate === rk ? 'border-blue-600 bg-blue-600 text-white' : 'border-gray-300'
-              }`}
-            >
-              {rk}%
-            </button>
-          ))}
+          <span className="mb-1 block font-medium text-muted">Return</span>
+          <SegmentedControl
+            options={[
+              { value: '3', label: '3%' },
+              { value: '8', label: '8%' },
+            ]}
+            value={String(rate)}
+            onChange={(v) => setRate(Number(v) as 3 | 8)}
+          />
         </div>
       </div>
 
       <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div>
-          <dt className="text-xs text-gray-500">Net value @ yr 40</dt>
-          <dd className="font-medium">{money(summary.valueAt40)}</dd>
-        </div>
-        <div>
-          <dt className="text-xs text-gray-500">Total fees @ yr 40</dt>
-          <dd className="font-medium">{money(summary.totalFeesAt40)}</dd>
-        </div>
-        <div>
-          <dt className="text-xs text-gray-500">Break-even</dt>
-          <dd className="font-medium">
-            {summary.breakEvenYear ? `Year ${summary.breakEvenYear}` : 'Never (40y)'}
-          </dd>
-        </div>
-        <div>
-          <dt className="text-xs text-gray-500">Surrender-free from</dt>
-          <dd className="font-medium">
-            {summary.surrenderFreeFromYear ? `Year ${summary.surrenderFreeFromYear}` : '—'}
-          </dd>
-        </div>
+        <StatCard label="Net value @ yr 40" value={money(summary.valueAt40)} />
+        <StatCard label="Total fees @ yr 40" value={money(summary.totalFeesAt40)} />
+        <StatCard
+          label="Break-even"
+          value={summary.breakEvenYear ? `Year ${summary.breakEvenYear}` : 'Never (40y)'}
+        />
+        <StatCard
+          label="Surrender-free from"
+          value={summary.surrenderFreeFromYear ? `Year ${summary.surrenderFreeFromYear}` : '—'}
+        />
       </dl>
 
       <section>
-        <h2 className="mb-2 text-sm font-medium text-gray-700">Value vs premiums paid</h2>
-        <FeeGraph rows={rows} mipYears={detail.paymentTermYears} />
+        <h2 className="mb-2 font-display text-lg text-ink">Value vs premiums paid</h2>
+        <Card>
+          <FeeGraph rows={rows} mipYears={detail.paymentTermYears} />
+        </Card>
       </section>
       <section>
-        <h2 className="mb-2 text-sm font-medium text-gray-700">Surrender fee vs net value</h2>
-        <SurrenderGraph rows={rows} mipYears={detail.paymentTermYears} />
+        <h2 className="mb-2 font-display text-lg text-ink">Surrender fee vs net value</h2>
+        <Card>
+          <SurrenderGraph rows={rows} mipYears={detail.paymentTermYears} />
+        </Card>
       </section>
 
       <section>
-        <h2 className="mb-2 text-sm font-medium text-gray-700">Modeled fees</h2>
+        <h2 className="mb-2 font-display text-lg text-ink">Modeled fees</h2>
         <table className="w-full text-left text-sm">
           <thead>
-            <tr className="text-xs text-gray-500 uppercase">
-              <th className="py-1 pr-4">Fee</th>
-              <th className="py-1 pr-4">Base</th>
-              <th className="py-1">Rate / schedule</th>
+            <tr className="text-xs tracking-wide text-muted uppercase">
+              <th className="py-1 pr-4 font-medium">Fee</th>
+              <th className="py-1 pr-4 font-medium">Base</th>
+              <th className="py-1 font-medium">Rate / schedule</th>
             </tr>
           </thead>
           <tbody>
             {allFees.map((f) => (
-              <tr key={f.id} className="border-t border-gray-100">
-                <td className="py-1 pr-4">{f.description}</td>
-                <td className="py-1 pr-4">{f.feeType}</td>
-                <td className="py-1">
-                  {!f.isFeeAvailable
-                    ? 'undisclosed'
-                    : f.flatFeeAmount != null
-                      ? `$${f.flatFeeAmount}/mo`
-                      : f.chargeSchedule === 'term'
-                        ? 'year-by-year'
-                        : f.chargePercentage != null
-                          ? `${f.chargePercentage}% (${f.chargeSchedule})`
-                          : f.chargeSchedule}
+              <tr key={f.id} className="border-t border-line">
+                <td className="py-1.5 pr-4 text-ink">{f.description}</td>
+                <td className="py-1.5 pr-4 text-muted">{f.feeType}</td>
+                <td className="tnum py-1.5 text-ink">
+                  {!f.isFeeAvailable ? (
+                    <Pill>undisclosed</Pill>
+                  ) : f.flatFeeAmount != null ? (
+                    `$${f.flatFeeAmount}/mo`
+                  ) : f.chargeSchedule === 'term' ? (
+                    'year-by-year'
+                  ) : f.chargePercentage != null ? (
+                    `${f.chargePercentage}% (${f.chargeSchedule})`
+                  ) : (
+                    f.chargeSchedule
+                  )}
                 </td>
               </tr>
             ))}
@@ -162,11 +156,13 @@ function PolicyProjection({ detail }: { detail: PolicyDetail }) {
         </table>
       </section>
 
-      <footer className="border-t border-gray-200 pt-3 text-xs text-gray-500">
+      <Card className="bg-accent-soft/50 text-xs text-muted">
         {notes.map((n, i) => (
-          <p key={i}>{n}</p>
+          <p key={i} className={i > 0 ? 'mt-1' : ''}>
+            {n}
+          </p>
         ))}
-      </footer>
-    </>
+      </Card>
+    </div>
   );
 }
