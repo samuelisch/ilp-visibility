@@ -10,3 +10,4 @@ pdfs/**
 .agents/**
 .claude/**
 .trunk/**
+backend/src/generated/**
