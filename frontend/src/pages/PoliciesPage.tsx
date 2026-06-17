@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { usePolicies } from '../hooks/usePolicies';
-import { fetchPolicyDetail } from '../api/policies';
 import { PoliciesTable } from '../components/PoliciesTable';
 import {
   selectVisibleRows,
@@ -23,6 +23,7 @@ const SORT_OPTIONS: {
 ];
 
 export function PoliciesPage() {
+  const navigate = useNavigate();
   const { data, isLoading, isError } = usePolicies();
   const [search, setSearch] = useState('');
   const [providerFilter, setProviderFilter] = useState(ALL_PROVIDERS);
@@ -42,14 +43,7 @@ export function PoliciesPage() {
     });
   }, [data, search, providerFilter, sort]);
 
-  const onRowClick = async (id: number) => {
-    try {
-      const detail = await fetchPolicyDetail(id);
-      console.log('policy detail', id, detail);
-    } catch (err) {
-      console.error('failed to fetch policy detail', id, err);
-    }
-  };
+  const onRowClick = (id: number) => navigate(`/policies/${id}`);
 
   return (
     <div className="space-y-6">
