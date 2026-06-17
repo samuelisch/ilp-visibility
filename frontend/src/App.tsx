@@ -1,4 +1,4 @@
-import { PoliciesPage } from './pages/PoliciesPage'
+import { PoliciesPage } from './pages/PoliciesPage';
 
 function App() {
   return (
@@ -6,9 +6,7 @@ function App() {
       <header className="border-b border-gray-200 bg-white">
         <div className="mx-auto max-w-5xl px-6 py-4">
           <h1 className="text-xl font-semibold">ILP Visibility</h1>
-          <p className="text-sm text-gray-500">
-            Investment-linked policies, compared.
-          </p>
+          <p className="text-sm text-gray-500">Easy viewing of estimated policy fees</p>
         </div>
       </header>
 
@@ -16,7 +14,7 @@ function App() {
         <PoliciesPage />
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
