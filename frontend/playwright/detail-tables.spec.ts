@@ -7,12 +7,14 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/api/policies/*', (route) => route.fulfill({ json: detail }));
 });
 
-test('fee table shows 10 rows/page and paginates', async ({ page }) => {
+test('fee table renders every year in a scroll viewport (no pagination)', async ({ page }) => {
   await page.goto('/policies/3');
   await expect(page.getByTestId('fee-year-table')).toBeVisible();
-  await expect(page.getByTestId('fee-row')).toHaveCount(10);
-  await page.getByTestId('fee-year-table').getByRole('button', { name: 'Next' }).click();
-  await expect(page.getByTestId('fee-year-table')).toContainText('11'); // year 11 now on page 2
+  await expect(page.getByTestId('fee-row')).toHaveCount(40); // all policy years; no paging
+  await expect(
+    page.getByTestId('fee-year-table').getByRole('button', { name: 'Next' }),
+  ).toHaveCount(0);
+  await expect(page.getByTestId('fee-year-table')).toContainText('11'); // year 11 already present
 });
 
 test('surrender table shows the charge-years only', async ({ page }) => {
