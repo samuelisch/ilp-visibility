@@ -13,7 +13,8 @@ test.beforeEach(async ({ page }) => {
 
 test('renders all policies from the API', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('table')).toBeVisible();
+  await expect(page.getByRole('list')).toBeVisible();
+  await expect(page.getByTestId('policy-card')).toHaveCount(6);
   await expect(page.getByText('6 policies')).toBeVisible();
   await expect(page.getByText('GREAT Wealth Advantage')).toBeVisible();
 });
@@ -34,19 +35,18 @@ test('provider filter restricts to one insurer', async ({ page }) => {
   await expect(page.getByText('Elite Secure Income')).toHaveCount(0);
 });
 
-test('sort by name descending reorders rows', async ({ page }) => {
+test('sort by name descending reorders cards', async ({ page }) => {
   await page.goto('/');
-  await page.getByLabel('Sort by').selectOption('name-desc');
-  // Data rows carry role="button" (keyboard activation), so they're not in the
-  // 'row' role tree — the first row button is the first data row.
-  await expect(page.getByRole('button').first()).toContainText('Wealth Voyage');
+  // Sort is a SegmentedControl now — click the 'Z–A' button instead of a <select>.
+  await page.getByRole('button', { name: 'Z–A' }).click();
+  await expect(page.getByTestId('policy-card').first()).toContainText('Wealth Voyage');
 });
 
 test('shows the empty state when no rows match', async ({ page }) => {
   await page.goto('/');
   await page.getByPlaceholder('Policy name or variant…').fill('zzzznotapolicy');
   await expect(page.getByText('No policies match your filters.')).toBeVisible();
-  await expect(page.getByRole('table')).toHaveCount(0);
+  await expect(page.getByTestId('policy-card')).toHaveCount(0);
 });
 
 test('shows the loading state while the request is pending', async ({ page }) => {
@@ -56,7 +56,7 @@ test('shows the loading state while the request is pending', async ({ page }) =>
   });
   await page.goto('/');
   await expect(page.getByText('Loading policies…')).toBeVisible();
-  await expect(page.getByRole('table')).toBeVisible(); // resolves after the delay
+  await expect(page.getByRole('list')).toBeVisible(); // resolves after the delay
 });
 
 test('shows the error state when the request fails', async ({ page }) => {
