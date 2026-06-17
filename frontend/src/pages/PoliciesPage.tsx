@@ -54,7 +54,7 @@ export function PoliciesPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-end gap-3">
-        <label className="flex-1 min-w-50 text-sm">
+        <label className="min-w-50 flex-1 text-sm">
           <span className="mb-1 block font-medium text-gray-700">Search</span>
           <input
             type="search"

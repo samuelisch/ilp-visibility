@@ -12,7 +12,7 @@ export function PoliciesTable({ policies, onRowClick }: PoliciesTableProps) {
   return (
     <table className="w-full border-collapse text-left text-sm">
       <thead>
-        <tr className="border-b border-gray-200 text-xs font-medium uppercase tracking-wide text-gray-500">
+        <tr className="border-b border-gray-200 text-xs font-medium tracking-wide text-gray-500 uppercase">
           <th className="px-4 py-3">Policy product</th>
           <th className="px-4 py-3">Insurer</th>
           <th className="px-4 py-3">Premium type</th>
