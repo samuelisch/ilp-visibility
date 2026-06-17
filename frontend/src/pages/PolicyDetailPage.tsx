@@ -8,7 +8,7 @@ import { FeeGraph } from '../components/FeeGraph';
 import { SurrenderGraph } from '../components/SurrenderGraph';
 import { FeeYearTable } from '../components/FeeYearTable';
 import { SurrenderFeeTable } from '../components/SurrenderFeeTable';
-import { formatMip, formatDomicile } from '../lib/format';
+import { formatMip, formatDomicile, formatSourceType } from '../lib/format';
 import { Card } from '../components/ui/Card';
 import { Pill } from '../components/ui/Pill';
 import { Field, inputClass } from '../components/ui/Field';
@@ -42,7 +42,7 @@ export function PolicyDetailPage() {
         <h1 className="font-display text-2xl text-ink">{data.name}</h1>
         <p className="text-sm text-muted">
           {data.provider.name} · {data.description} · {formatDomicile(data.domicile)} ·{' '}
-          {formatMip(data.paymentTermYears)}
+          {formatSourceType(data.sourceType)} · {formatMip(data.paymentTermYears)}
         </p>
       </header>
 
