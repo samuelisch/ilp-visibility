@@ -31,3 +31,21 @@ export function surrenderFeeForYear(
   }
   return total;
 }
+
+/** Contractual surrender rate (%) for the year, summed across schedules (0 if none/ended). */
+export function surrenderRateForYear(
+  surrenderFees: PolicyAccountSurrenderFee[],
+  ctx: SurrenderContext,
+): number {
+  let rate = 0;
+  for (const sf of surrenderFees) {
+    const terms = sf.policyAccountSurrenderFeeTerms;
+    const row = terms.find((t) => t.policyYear === ctx.policyYear);
+    if (row) rate += pct(row.chargePercentage);
+    else if (sf.termEndBehaviour === 'persist_last' && terms.length) {
+      const last = terms.reduce((a, b) => (b.policyYear > a.policyYear ? b : a));
+      if (ctx.policyYear > last.policyYear) rate += pct(last.chargePercentage);
+    }
+  }
+  return rate;
+}

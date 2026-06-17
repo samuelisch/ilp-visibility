@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { surrenderFeeForYear } from './surrenderFeeForYear';
+import { surrenderFeeForYear, surrenderRateForYear } from './surrenderFeeForYear';
 import type { PolicyAccountSurrenderFee } from '../../types/policy';
 
 const sf = (over: Partial<PolicyAccountSurrenderFee>): PolicyAccountSurrenderFee => ({
@@ -45,6 +45,14 @@ describe('surrenderFeeForYear', () => {
   it('no surrender fees → 0', () => {
     expect(
       surrenderFeeForYear([], { policyYear: 1, accountValue: 10000, cumulativePremiumsPaid: 9000 }),
+    ).toBe(0);
+  });
+  it('surrenderRateForYear returns the year rate, 0 after it ends', () => {
+    expect(
+      surrenderRateForYear([sf({})], { policyYear: 1, accountValue: 0, cumulativePremiumsPaid: 0 }),
+    ).toBe(12);
+    expect(
+      surrenderRateForYear([sf({})], { policyYear: 5, accountValue: 0, cumulativePremiumsPaid: 0 }),
     ).toBe(0);
   });
 });
