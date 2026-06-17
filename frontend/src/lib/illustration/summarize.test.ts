@@ -15,11 +15,19 @@ const rows: YearRow[] = Array.from({ length: 40 }, (_, i) => ({
 }));
 
 describe('summarize', () => {
-  it('reports value@40, total fees@40, break-even, surrender-free year', () => {
+  it('reports value@40, total fees@40 (nominal), break-even, surrender-free year', () => {
     const s = summarize(rows);
     expect(s.valueAt40).toBe(rows[39].netValue);
-    expect(s.totalFeesAt40).toBeCloseTo(rows[39].grossValue - rows[39].netValue, 6);
-    expect(s.breakEvenYear).toBe(1); // net >= premiums from yr 1 here
-    expect(s.surrenderFreeFromYear).toBe(6); // first year surrenderFee === 0
+    expect(s.totalFeesAt40).toBeCloseTo(
+      rows.reduce((a, r) => a + r.totalFeesThisYear, 0), // 40 × 50 = 2000
+      6,
+    );
+    expect(s.breakEvenYear).toBe(1);
+    expect(s.surrenderFreeFromYear).toBe(6); // charged yrs 1–5, free from 6
+  });
+
+  it('returns null surrender-free for a policy that never charges', () => {
+    const noCharge = rows.map((r) => ({ ...r, surrenderFee: 0, surrenderRate: 0 }));
+    expect(summarize(noCharge).surrenderFreeFromYear).toBeNull();
   });
 });
