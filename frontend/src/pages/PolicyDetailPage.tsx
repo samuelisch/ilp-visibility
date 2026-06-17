@@ -6,6 +6,7 @@ import { summarize } from '../lib/illustration/summarize';
 import { omittedFeeNotes } from '../lib/feeDisclosure';
 import { FeeGraph } from '../components/FeeGraph';
 import { SurrenderGraph } from '../components/SurrenderGraph';
+import { FeeYearTable } from '../components/FeeYearTable';
 import { formatMip, formatDomicile } from '../lib/format';
 import { Card } from '../components/ui/Card';
 import { Pill } from '../components/ui/Pill';
@@ -114,6 +115,10 @@ function PolicyProjection({ detail }: { detail: PolicyDetail }) {
         <Card>
           <FeeGraph rows={rows} mipYears={detail.paymentTermYears} />
         </Card>
+      </section>
+      <section>
+        <h2 className="mb-2 font-display text-lg text-ink">Year-by-year fees</h2>
+        <FeeYearTable rows={rows} />
       </section>
       <section>
         <h2 className="mb-2 font-display text-lg text-ink">Surrender fee vs net value</h2>
