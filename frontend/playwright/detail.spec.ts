@@ -27,7 +27,8 @@ test('premium input and 3/8 toggle work', async ({ page }) => {
   // spinbutton = the number input; a /premium/i getByLabel also matches a legend-icon svg.
   await page.getByRole('spinbutton', { name: /premium/i }).fill('800');
   await page.getByRole('button', { name: '8%' }).click();
-  await expect(page.getByRole('button', { name: '8%' })).toHaveClass(/bg-blue-600/);
+  // Active segment uses the SegmentedControl's accent style.
+  await expect(page.getByRole('button', { name: '8%' })).toHaveClass(/bg-accent/);
 });
 
 test('shows the omitted-fees disclaimer', async ({ page }) => {
