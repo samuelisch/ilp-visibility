@@ -1,4 +1,4 @@
-import type { Domicile, PolicyListItem } from '../types/policy';
+import type { Domicile, PolicyListItem, SourceType } from '../types/policy';
 
 // Single source of truth for value -> human label mappings used across the policies UI.
 
@@ -23,4 +23,15 @@ export function formatPremiumType(paymentTermYears: number | null): string {
 // Subtext under the policy name, e.g. "SGD · 25-year MIP" / "SGD · Single premium".
 export function formatProductSubtext(policy: PolicyListItem): string {
   return `${formatDomicile(policy.domicile)} · ${formatMip(policy.paymentTermYears)}`;
+}
+
+export function formatSourceType(sourceType: SourceType): string {
+  switch (sourceType) {
+    case 'cash':
+      return 'Cash';
+    case 'cash_or_srs':
+      return 'Cash / SRS';
+    case 'cpfis':
+      return 'CPFIS';
+  }
 }

@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { formatDomicile, formatMip, formatPremiumType, formatProductSubtext } from './format';
+import {
+  formatDomicile,
+  formatMip,
+  formatPremiumType,
+  formatProductSubtext,
+  formatSourceType,
+} from './format';
 import type { PolicyListItem } from '../types/policy';
 
 describe('formatDomicile', () => {
@@ -22,6 +28,14 @@ describe('formatPremiumType', () => {
   it('null → Single, number → Regular', () => {
     expect(formatPremiumType(null)).toBe('Single');
     expect(formatPremiumType(10)).toBe('Regular');
+  });
+});
+
+describe('formatSourceType', () => {
+  it('maps all three funding sources to human labels', () => {
+    expect(formatSourceType('cash')).toBe('Cash');
+    expect(formatSourceType('cash_or_srs')).toBe('Cash / SRS');
+    expect(formatSourceType('cpfis')).toBe('CPFIS');
   });
 });
 
