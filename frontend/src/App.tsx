@@ -4,11 +4,11 @@ import { PolicyDetailPage } from './pages/PolicyDetailPage';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
-      <header className="border-b border-gray-200 bg-white">
-        <div className="mx-auto max-w-5xl px-6 py-4">
-          <h1 className="text-xl font-semibold">ILP Visibility</h1>
-          <p className="text-sm text-gray-500">Easy viewing of estimated policy fees</p>
+    <div className="min-h-screen">
+      <header className="border-b border-line bg-surface/60 backdrop-blur">
+        <div className="mx-auto max-w-5xl px-6 py-5">
+          <h1 className="font-display text-2xl text-ink">◐ ILP Visibility</h1>
+          <p className="text-sm text-muted">See what your policy really costs.</p>
         </div>
       </header>
 
