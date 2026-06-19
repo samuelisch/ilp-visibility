@@ -7,8 +7,6 @@ import '@fontsource-variable/hanken-grotesk';
 import './index.css';
 import App from './App.tsx';
 
-// Policy data is static-ish; cache it for an hour and don't refetch on focus.
-// (DECISION 036)
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
