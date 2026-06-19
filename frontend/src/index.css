@@ -21,17 +21,19 @@
 @layer base {
   body {
     @apply bg-paper text-ink font-sans antialiased;
-    /* subtle warm grain for depth — light touch */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    /* Layered warm "paper" wash — faint radial gradients, no asset. */
+    background-image:
+      radial-gradient(900px 600px at 12% 0%, rgba(197, 107, 74, 0.05), transparent 60%),
+      radial-gradient(800px 700px at 88% 22%, rgba(42, 37, 33, 0.025), transparent 55%),
+      radial-gradient(700px 700px at 50% 100%, rgba(42, 37, 33, 0.02), transparent 50%);
+    background-attachment: fixed; /* wash stays put on scroll */
   }
   ::selection {
     background: var(--color-accent-soft);
   }
-  /* tabular figures for financial numbers */
   .tnum {
     font-variant-numeric: tabular-nums;
   }
-  /* default focus ring uses the accent */
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
