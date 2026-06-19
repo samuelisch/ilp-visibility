@@ -8,7 +8,6 @@ export interface SurrenderContext {
   cumulativePremiumsPaid: number;
 }
 
-/** Dollar surrender penalty for the year (0 if none / ended). */
 export function surrenderFeeForYear(
   surrenderFees: PolicyAccountSurrenderFee[],
   ctx: SurrenderContext,
@@ -32,7 +31,6 @@ export function surrenderFeeForYear(
   return total;
 }
 
-/** Contractual surrender rate (%) for the year, summed across schedules (0 if none/ended). */
 export function surrenderRateForYear(
   surrenderFees: PolicyAccountSurrenderFee[],
   ctx: SurrenderContext,

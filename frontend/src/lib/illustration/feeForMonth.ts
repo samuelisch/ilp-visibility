@@ -1,7 +1,7 @@
 import type { PolicyAccountFee } from '../../types/policy';
 import type { FeeContext } from './types';
 
-const pct = (s: string | null): number => (s == null ? 0 : Number(s));
+const pct = (s: string | null): number => (s == null ? 0 : Number(s) / 100);
 
 /** Dollar charge for one fee in one month. */
 export function feeForMonth(fee: PolicyAccountFee, ctx: FeeContext): number {
@@ -21,7 +21,7 @@ export function feeForMonth(fee: PolicyAccountFee, ctx: FeeContext): number {
       return 0;
     const cap = ctx.paymentTermYears ?? ctx.policyYear;
     const n = Math.min(ctx.policyYear, cap);
-    return (pct(fee.chargePercentage) / 100 / 12) * ctx.annualisedPremium * n;
+    return (pct(fee.chargePercentage) / 12) * ctx.annualisedPremium * n;
   }
 
   // resolve this year's annual rate by schedule
@@ -55,7 +55,7 @@ export function feeForMonth(fee: PolicyAccountFee, ctx: FeeContext): number {
   }
   if (annualRate === 0) return 0;
 
-  const monthly = annualRate / 100 / 12;
+  const monthly = annualRate / 12;
   switch (fee.feeType) {
     case 'account_value':
       return monthly * ctx.accountValue;

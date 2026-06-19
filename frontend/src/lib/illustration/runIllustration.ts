@@ -3,6 +3,7 @@ import type { IllustrationInput, IllustrationResult, YearRow } from './types';
 import { feeForMonth } from './feeForMonth';
 import { surrenderFeeForYear, surrenderRateForYear } from './surrenderFeeForYear';
 
+// temp for now
 const HORIZON = 40;
 
 function premiumChargeRate(acct: PolicyAccount, policyYear: number): number {

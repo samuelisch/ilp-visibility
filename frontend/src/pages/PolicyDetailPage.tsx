@@ -100,15 +100,11 @@ function PolicyProjection({ detail }: { detail: PolicyDetail }) {
       </div>
 
       <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatCard label="Net value @ yr 40" value={money(summary.valueAt40)} />
-        <StatCard label="Total fees @ yr 40" value={money(summary.totalFeesAt40)} />
+        <StatCard label="Net value @ yr 40" value={money(summary.accountValueAtEnd)} />
+        <StatCard label="Total fees @ yr 40" value={money(summary.totalFeesAtEnd)} />
         <StatCard
-          label="Break-even"
-          value={summary.breakEvenYear ? `Year ${summary.breakEvenYear}` : 'Never (40y)'}
-        />
-        <StatCard
-          label="Surrender-free from"
-          value={summary.surrenderFreeFromYear ? `Year ${summary.surrenderFreeFromYear}` : '—'}
+          label="Surrender-fee exists till"
+          value={summary.surrenderFeeEndYear ? `Year ${summary.surrenderFeeEndYear}` : '—'}
         />
       </dl>
 
