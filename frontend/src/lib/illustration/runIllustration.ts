@@ -2,6 +2,7 @@ import type { PolicyDetail, PolicyAccount } from '../../types/policy';
 import type { IllustrationInput, IllustrationResult, YearRow } from './types';
 import { feeForMonth } from './feeForMonth';
 import { surrenderFeeForYear, surrenderRateForYear } from './surrenderFeeForYear';
+import { isSinglePremium } from '../policy';
 
 // temp for now
 const HORIZON = 40;
@@ -20,7 +21,7 @@ export function runIllustration(
 ): IllustrationResult {
   const r = input.annualReturnRate / 100 / 12;
   const accounts = policy.policyAccounts;
-  const isSingle = accounts.every((a) => a.premiumAllocationType === 'single');
+  const isSingle = isSinglePremium(accounts);
   const ppt = policy.paymentTermYears;
   const annualisedPremium = isSingle ? input.premium : input.premium * 12;
 

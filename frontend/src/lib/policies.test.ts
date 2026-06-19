@@ -11,6 +11,7 @@ const rows: PolicyListItem[] = [
     paymentTermYears: null,
     sourceType: 'cash',
     provider: { name: 'AIA' },
+    policyAccounts: [{ premiumAllocationType: 'single' }],
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ const rows: PolicyListItem[] = [
     paymentTermYears: 20,
     sourceType: 'cash',
     provider: { name: 'Manulife' },
+    policyAccounts: [{ premiumAllocationType: 'recurring' }],
   },
   {
     id: 3,
@@ -29,6 +31,7 @@ const rows: PolicyListItem[] = [
     paymentTermYears: 10,
     sourceType: 'cash',
     provider: { name: 'AIA' },
+    policyAccounts: [{ premiumAllocationType: 'recurring' }],
   },
 ];
 

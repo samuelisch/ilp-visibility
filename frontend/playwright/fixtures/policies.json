@@ -6,7 +6,8 @@
     "domicile": "sgd",
     "paymentTermYears": null,
     "sourceType": "cash_or_srs",
-    "provider": { "name": "AIA" }
+    "provider": { "name": "AIA" },
+    "policyAccounts": [{ "premiumAllocationType": "single" }]
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "domicile": "sgd",
     "paymentTermYears": 5,
     "sourceType": "cash",
-    "provider": { "name": "AIA" }
+    "provider": { "name": "AIA" },
+    "policyAccounts": [{ "premiumAllocationType": "recurring" }]
   },
   {
     "id": 3,
@@ -24,16 +26,18 @@
     "domicile": "sgd",
     "paymentTermYears": 20,
     "sourceType": "cash",
-    "provider": { "name": "Manulife" }
+    "provider": { "name": "Manulife" },
+    "policyAccounts": [{ "premiumAllocationType": "recurring" }]
   },
   {
     "id": 4,
     "name": "GREAT Wealth Advantage",
-    "description": "MIP 10",
+    "description": "Open-ended",
     "domicile": "sgd",
-    "paymentTermYears": 10,
+    "paymentTermYears": null,
     "sourceType": "cash",
-    "provider": { "name": "Great Eastern" }
+    "provider": { "name": "Great Eastern" },
+    "policyAccounts": [{ "premiumAllocationType": "recurring" }]
   },
   {
     "id": 5,
@@ -42,7 +46,8 @@
     "domicile": "sgd",
     "paymentTermYears": 25,
     "sourceType": "cash",
-    "provider": { "name": "HSBC Life" }
+    "provider": { "name": "HSBC Life" },
+    "policyAccounts": [{ "premiumAllocationType": "recurring" }]
   },
   {
     "id": 6,
@@ -51,6 +56,7 @@
     "domicile": "usd",
     "paymentTermYears": 10,
     "sourceType": "cash",
-    "provider": { "name": "Manulife" }
+    "provider": { "name": "Manulife" },
+    "policyAccounts": [{ "premiumAllocationType": "recurring" }]
   }
 ]

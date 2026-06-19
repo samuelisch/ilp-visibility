@@ -13,6 +13,7 @@ export interface PolicyListItem {
   paymentTermYears: number | null;
   sourceType: SourceType;
   provider: { name: string };
+  policyAccounts: { premiumAllocationType: PremiumAllocationType }[];
 }
 
 // `GET /api/policies/:id` returns the full nested tree, consumed by the detail page and

@@ -1,4 +1,5 @@
 import type { Domicile, PolicyListItem, SourceType } from '../types/policy';
+import { isSinglePremium } from './policy';
 
 export function formatDomicile(domicile: Domicile): string {
   switch (domicile) {
@@ -9,16 +10,18 @@ export function formatDomicile(domicile: Domicile): string {
   }
 }
 
-export function formatMip(paymentTermYears: number | null): string {
-  return paymentTermYears === null ? 'Single premium' : `${paymentTermYears}-year MIP`;
+export function formatPremiumType(isSingle: boolean): string {
+  return isSingle ? 'Single' : 'Regular';
 }
 
-export function formatPremiumType(paymentTermYears: number | null): string {
-  return paymentTermYears === null ? 'Single' : 'Regular';
+export function formatMip(isSingle: boolean, paymentTermYears: number | null): string {
+  if (isSingle) return 'Single premium';
+  return paymentTermYears === null ? 'Open-ended' : `${paymentTermYears}-year MIP`;
 }
 
 export function formatProductSubtext(policy: PolicyListItem): string {
-  return `${formatDomicile(policy.domicile)} · ${formatMip(policy.paymentTermYears)}`;
+  const single = isSinglePremium(policy.policyAccounts);
+  return `${formatDomicile(policy.domicile)} · ${formatMip(single, policy.paymentTermYears)}`;
 }
 
 export function formatSourceType(sourceType: SourceType): string {

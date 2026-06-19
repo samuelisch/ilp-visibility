@@ -16,18 +16,21 @@ describe('formatDomicile', () => {
 });
 
 describe('formatMip', () => {
-  it('null → Single premium', () => {
-    expect(formatMip(null)).toBe('Single premium');
+  it('single → Single premium', () => {
+    expect(formatMip(true, null)).toBe('Single premium');
   });
-  it('number → N-year MIP', () => {
-    expect(formatMip(20)).toBe('20-year MIP');
+  it('regular + fixed term → N-year MIP', () => {
+    expect(formatMip(false, 20)).toBe('20-year MIP');
+  });
+  it('regular + no fixed term → Open-ended (the bug being fixed)', () => {
+    expect(formatMip(false, null)).toBe('Open-ended');
   });
 });
 
 describe('formatPremiumType', () => {
-  it('null → Single, number → Regular', () => {
-    expect(formatPremiumType(null)).toBe('Single');
-    expect(formatPremiumType(10)).toBe('Regular');
+  it('single → Single, regular → Regular', () => {
+    expect(formatPremiumType(true)).toBe('Single');
+    expect(formatPremiumType(false)).toBe('Regular');
   });
 });
 
@@ -48,9 +51,17 @@ describe('formatProductSubtext', () => {
     paymentTermYears: 25,
     sourceType: 'cash',
     provider: { name: 'AIA' },
+    policyAccounts: [{ premiumAllocationType: 'recurring' }],
   };
-  it('composes "{DOMICILE} · {MIP}"', () => {
+  it('composes "{DOMICILE} · {MIP}" by premium nature', () => {
     expect(formatProductSubtext(base)).toBe('SGD · 25-year MIP');
-    expect(formatProductSubtext({ ...base, paymentTermYears: null })).toBe('SGD · Single premium');
+    expect(formatProductSubtext({ ...base, paymentTermYears: null })).toBe('SGD · Open-ended');
+    expect(
+      formatProductSubtext({
+        ...base,
+        paymentTermYears: null,
+        policyAccounts: [{ premiumAllocationType: 'single' }],
+      }),
+    ).toBe('SGD · Single premium');
   });
 });

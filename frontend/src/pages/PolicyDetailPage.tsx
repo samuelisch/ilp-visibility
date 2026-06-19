@@ -9,6 +9,7 @@ import { SurrenderGraph } from '../components/SurrenderGraph';
 import { FeeYearTable } from '../components/FeeYearTable';
 import { SurrenderFeeTable } from '../components/SurrenderFeeTable';
 import { formatMip, formatDomicile, formatSourceType } from '../lib/format';
+import { isSinglePremium } from '../lib/policy';
 import { formatFeeBase, formatChargeSchedule } from '../lib/feeLabels';
 import { Card } from '../components/ui/Card';
 import { Pill } from '../components/ui/Pill';
@@ -43,7 +44,8 @@ export function PolicyDetailPage() {
         <h1 className="font-display text-2xl text-ink">{data.name}</h1>
         <p className="text-sm text-muted">
           {data.provider.name} · {data.description} · {formatDomicile(data.domicile)} ·{' '}
-          {formatSourceType(data.sourceType)} · {formatMip(data.paymentTermYears)}
+          {formatSourceType(data.sourceType)} ·{' '}
+          {formatMip(isSinglePremium(data.policyAccounts), data.paymentTermYears)}
         </p>
       </header>
 
@@ -62,7 +64,7 @@ export function PolicyDetailPage() {
 }
 
 function PolicyProjection({ detail }: { detail: PolicyDetail }) {
-  const isSingle = detail.policyAccounts.every((a) => a.premiumAllocationType === 'single');
+  const isSingle = isSinglePremium(detail.policyAccounts);
   const [premium, setPremium] = useState(isSingle ? 10000 : 400);
   const [rate, setRate] = useState<3 | 8>(3);
   const results = useIllustration(detail, premium);

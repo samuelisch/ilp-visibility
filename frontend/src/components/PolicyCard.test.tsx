@@ -12,6 +12,7 @@ const policy: PolicyListItem = {
   paymentTermYears: 20,
   sourceType: 'cash',
   provider: { name: 'Manulife' },
+  policyAccounts: [{ premiumAllocationType: 'recurring' }],
 };
 
 describe('PolicyCard', () => {
@@ -23,6 +24,16 @@ describe('PolicyCard', () => {
     expect(screen.getByText('SGD')).toBeInTheDocument();
     expect(screen.getByText('20-year MIP')).toBeInTheDocument();
     expect(screen.getByText('Cash')).toBeInTheDocument();
+  });
+  it('labels a regular open-ended policy (recurring + no fixed term) as Regular / Open-ended', () => {
+    const openEnded: PolicyListItem = {
+      ...policy,
+      paymentTermYears: null,
+      policyAccounts: [{ premiumAllocationType: 'recurring' }],
+    };
+    render(<PolicyCard policy={openEnded} onClick={() => {}} />);
+    expect(screen.getByText('Regular')).toBeInTheDocument();
+    expect(screen.getByText('Open-ended')).toBeInTheDocument();
   });
   it('calls onClick with id on click and on Enter', async () => {
     const onClick = vi.fn();
