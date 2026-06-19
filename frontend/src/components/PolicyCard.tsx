@@ -23,7 +23,7 @@ export function PolicyCard({
             onClick(policy.id);
           }
         }}
-        className="cursor-pointer focus:outline-none"
+        className="cursor-pointer"
       >
         <div className="text-xs tracking-wide text-muted uppercase">{policy.provider.name}</div>
         <div className="font-display text-lg text-ink">{policy.name}</div>

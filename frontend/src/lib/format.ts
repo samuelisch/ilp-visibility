@@ -1,7 +1,5 @@
 import type { Domicile, PolicyListItem, SourceType } from '../types/policy';
 
-// Single source of truth for value -> human label mappings used across the policies UI.
-
 export function formatDomicile(domicile: Domicile): string {
   switch (domicile) {
     case 'sgd':
@@ -34,4 +32,8 @@ export function formatSourceType(sourceType: SourceType): string {
     case 'cpfis':
       return 'CPFIS';
   }
+}
+
+export function formatMoney(v: number): string {
+  return `$${Math.round(v).toLocaleString()}`;
 }

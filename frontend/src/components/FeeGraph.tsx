@@ -11,8 +11,8 @@ import {
 } from 'recharts';
 import { useReducedMotion } from 'motion/react';
 import type { YearRow } from '../lib/illustration';
+import { formatMoney } from '../lib/format';
 
-const money = (v: number) => `$${Math.round(v).toLocaleString()}`;
 const axisTick = { fontSize: 11, fill: '#8c8279' };
 const tooltipStyle = {
   borderRadius: 12,
@@ -38,7 +38,7 @@ export function FeeGraph({ rows, mipYears }: { rows: YearRow[]; mipYears: number
           tickFormatter={(v) => `$${Math.round(v / 1000)}k`}
         />
         <Tooltip
-          formatter={(v: number) => money(v)}
+          formatter={(value) => formatMoney(value as number)}
           labelFormatter={(y) => `Year ${y}`}
           contentStyle={tooltipStyle}
         />

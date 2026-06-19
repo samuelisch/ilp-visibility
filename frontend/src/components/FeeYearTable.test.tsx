@@ -16,10 +16,10 @@ const rows: YearRow[] = Array.from({ length: 40 }, (_, i) => ({
 }));
 
 describe('FeeYearTable', () => {
-  it('renders every year in a scroll viewport (no pagination)', () => {
+  it('renders every year in a scroll viewport', () => {
     render(<FeeYearTable rows={rows} />);
     expect(screen.getAllByTestId('fee-row')).toHaveLength(40);
-    expect(screen.getByText('11')).toBeInTheDocument(); // year 11 in the DOM, no Next click
+    expect(screen.getByText('11')).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Next' })).not.toBeInTheDocument();
   });
 });

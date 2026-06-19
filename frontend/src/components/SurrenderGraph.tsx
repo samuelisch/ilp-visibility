@@ -11,6 +11,7 @@ import {
 } from 'recharts';
 import { useReducedMotion } from 'motion/react';
 import type { YearRow } from '../lib/illustration';
+import { formatMoney } from '../lib/format';
 
 const axisTick = { fontSize: 11, fill: '#8c8279' };
 const tooltipStyle = {
@@ -37,7 +38,7 @@ export function SurrenderGraph({ rows, mipYears }: { rows: YearRow[]; mipYears: 
           tickFormatter={(v) => `$${Math.round(v / 1000)}k`}
         />
         <Tooltip
-          formatter={(v: number) => `$${Math.round(v).toLocaleString()}`}
+          formatter={(v) => formatMoney(v as number)}
           labelFormatter={(y) => `Year ${y}`}
           contentStyle={tooltipStyle}
         />
@@ -55,7 +56,7 @@ export function SurrenderGraph({ rows, mipYears }: { rows: YearRow[]; mipYears: 
         <Line
           type="monotone"
           dataKey="surrenderFee"
-          name="Surrender fee ($)"
+          name="Surrender fee"
           stroke="#c56b4a"
           strokeWidth={2}
           dot={false}
