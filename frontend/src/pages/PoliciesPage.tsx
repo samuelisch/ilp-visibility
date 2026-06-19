@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
-import { usePolicies } from '../hooks/usePolicies';
+import { usePolicies } from '../api/policies';
 import { PolicyCard } from '../components/PolicyCard';
 import { Field, inputClass } from '../components/ui/Field';
 import { SegmentedControl } from '../components/ui/SegmentedControl';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { usePolicyDetail } from '../hooks/usePolicyDetail';
+import { usePolicyDetail } from '../api/policies';
 import { useIllustration } from '../hooks/useIllustration';
 import { summarize } from '../lib/illustration/summarize';
 import { omittedFeeNotes } from '../lib/feeDisclosure';
