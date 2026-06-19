@@ -10,6 +10,7 @@ const policyListSelect = {
   paymentTermYears: true,
   sourceType: true,
   provider: { select: { name: true } },
+  policyAccounts: { select: { premiumAllocationType: true } },
 } satisfies Prisma.PolicySelect;
 
 export type PolicyListItem = Prisma.PolicyGetPayload<{

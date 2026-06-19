@@ -34,6 +34,7 @@ describe('PolicyService', () => {
         paymentTermYears: null,
         sourceType: 'cash_or_srs',
         provider: { name: 'Test Insurer' },
+        policyAccounts: [{ premiumAllocationType: 'single' }],
       },
     ];
 
@@ -46,6 +47,7 @@ describe('PolicyService', () => {
       paymentTermYears: true,
       sourceType: true,
       provider: { select: { name: true } },
+      policyAccounts: { select: { premiumAllocationType: true } },
     };
 
     it('should query with no where clause when no filters provided', async () => {
