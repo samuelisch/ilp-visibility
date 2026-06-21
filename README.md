@@ -1,5 +1,17 @@
 # ILP Visibility
 
+<table>
+  <tr>
+    <td>
+      <img width="400" alt="Screenshot 2026-06-22 at 2 30 21 AM" src="https://github.com/user-attachments/assets/78026127-481c-48ad-ac1e-ba2c3c30e9f7" />
+    </td>
+    <td>
+      <img width="400" alt="Screenshot 2026-06-22 at 2 30 13 AM" src="https://github.com/user-attachments/assets/6fd424c6-307d-478d-82fb-bb6791e8c859" />
+    </td>
+  </tr>
+</table>
+
+
 A fee-transparency tool for Singapore **Investment-Linked Policies (ILPs)**. It extracts the fee and surrender-charge tables buried in provider Product Summary PDFs, models them against a shared schema, and surfaces them as plain, comparable figures — including a projected account-value and surrender-value illustration.
 
 The target user is a consumer who already holds (or is being sold) an ILP and starts from the _document_, not from a spreadsheet. The main existing tool, SGFIREPlanner, serves sophisticated users willing to enter charges by hand; no tool today does document-based extraction.
