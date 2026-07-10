@@ -6,6 +6,7 @@
   "packageManager": "pnpm@10.30.2",
   "scripts": {
     "dev": "vite",
+    "dev:prod": "vite --mode prod",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "typecheck": "tsc -b --noEmit",

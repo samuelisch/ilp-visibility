@@ -1,9 +1,9 @@
-// Generic HTTP helpers shared by every api/<resource>.ts. Add postJson/putJson/etc. here
-// as needed — one place for request/error conventions.
+const API_BASE = (import.meta.env.VITE_API_URL ?? '').replace(/\/$/, '');
+
 export async function getJson<T>(url: string): Promise<T> {
-  const res = await fetch(url);
+  const res = await fetch(`${API_BASE}${url}`);
   if (!res.ok) {
-    throw new Error(`Request failed (${res.status} ${res.statusText}): ${url}`);
+    throw new Error(`Request failed (${res.status} ${res.statusText}): ${API_BASE}${url}`);
   }
   return res.json() as Promise<T>;
 }
