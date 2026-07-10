@@ -86,6 +86,17 @@ Decision _not_ taken: a `packages/shared/` workspace for FE/BE shared types. Def
 
 Trade-off accepted: declaration boilerplate (shared tools listed in multiple `package.json` files) in exchange for strict dependency isolation — each workspace can only import what it declared, preventing phantom deps.
 
+**Addendum 2026-07-10 — deploying a workspace: build from the repo root, not the subdirectory.** Deploying the backend to Railway surfaced the deployment-time consequence of this decision: **shared root configs mean a workspace is not independently deployable from its own subdirectory.** Railway's Root Directory was set to `/backend`, so its checkout couldn't see `../tsconfig.base.json` and `nest build` failed. The base tsconfig is only the first symptom — the single root `pnpm-lock.yaml` and `pnpm-workspace.yaml` live above `/backend` too.
+
+**Resolution — deploy from repo-root context with a filtered build (no config moved):** Railway Root Directory left **blank** (repo root); build `pnpm --filter backend build`, start `pnpm --filter backend start:prod`, watch `/backend/**`. Codified in a committed `railway.json` at the repo root (`builder: RAILPACK`) rather than dashboard-only settings — dashboard config was the one place this project's config wasn't versioned. This is the model pnpm/Railway are built for: represent the project truthfully (whole graph + lockfile in context), build one slice.
+
+**Why the tempting shortcuts were rejected:**
+
+- **Scope Railway to `/backend` + copy the base configs into each workspace** (the first instinct). Fixes only the `tsc` build, not the install — the single root lockfile still lives above `/backend`, so a `/backend`-scoped install has no lockfile in context (unpinned, non-reproducible). It doesn't actually make the backend independently deployable; it just duplicates inert language-level options and forfeits lockfile pinning. Truly standalone would mean the backend owning its own lockfile — i.e. leaving the workspace, a far bigger reversal of this decision, for no gain.
+- **Build in CI and ship only `dist/` to Railway.** Heavier infrastructure (image registry + Railway-from-image) to dodge a config-path problem; also `dist/` alone isn't runnable (needs `node_modules` + `package.json` + the generated Prisma client). Worth doing later for its _own_ reasons — a test gate, reproducible off-host builds — sequenced as its own epic, not bolted on to unblock a deploy. Note there is no CI pipeline yet (DEC 038: local commands only).
+
+Key clarification: **tsconfig is build-time only** — the running container just executes `node dist/main`, reading no tsconfig. Splitting the deploy (backend → Railway, frontend → Netlify/static) is the intended topology, consistent with the split-origin path DEC 035 kept reversible; the monorepo is a dev-time convenience and does not imply co-deployment.
+
 ---
 
 ## 010 — Raw SQL schema before ORM — 2026-05-29
