@@ -10,7 +10,7 @@ async function bootstrap() {
     .map((o) => o.trim())
     .filter(Boolean);
   app.enableCors({
-    origin: corsOrigins?.length ? corsOrigins : ['http://localhost:5173'],
+    origin: corsOrigins,
   });
 
   await app.listen(process.env.PORT ?? 3000);
