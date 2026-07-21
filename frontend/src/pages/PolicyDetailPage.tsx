@@ -13,7 +13,7 @@ import { isSinglePremium } from '../lib/policy';
 import { formatFeeBase, formatChargeSchedule } from '../lib/feeLabels';
 import { Card } from '../components/ui/Card';
 import { Pill } from '../components/ui/Pill';
-import { Field, inputClass } from '../components/ui/Field';
+import { PremiumInput } from '../components/PremiumInput';
 import { SegmentedControl } from '../components/ui/SegmentedControl';
 import { StatCard } from '../components/ui/StatCard';
 import type { PolicyDetail } from '../types/policy';
@@ -79,15 +79,11 @@ function PolicyProjection({ detail }: { detail: PolicyDetail }) {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-end gap-4">
-        <Field label={isSingle ? 'Single premium (S$)' : 'Monthly premium (S$)'} className="w-40">
-          <input
-            type="number"
-            min={0}
-            value={premium}
-            onChange={(e) => setPremium(Number(e.target.value) || 0)}
-            className={`${inputClass} tnum`}
-          />
-        </Field>
+        <PremiumInput
+          label={isSingle ? 'Single premium (S$)' : 'Monthly premium (S$)'}
+          value={premium}
+          onChange={setPremium}
+        />
         <div className="text-sm">
           <span className="mb-1 block font-medium text-muted">Return</span>
           <SegmentedControl

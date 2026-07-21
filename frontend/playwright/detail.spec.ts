@@ -22,10 +22,26 @@ test('navigates from list to detail and renders both charts', async ({ page }) =
   await expect(legends.getByText('Surrender fee ($)')).toBeVisible(); // SurrenderGraph legend
 });
 
+test('premium input can be replaced after clearing and defaults to zero on blur', async ({
+  page,
+}) => {
+  await page.goto('/policies/3');
+  const input = page.getByRole('spinbutton', { name: /premium/i });
+
+  await input.fill('');
+  await expect(input).toHaveValue('');
+  await input.pressSequentially('800');
+  await expect(input).toHaveValue('800');
+
+  await input.fill('');
+  await page.getByRole('heading', { name: 'ManuInvest Duo' }).click();
+  await expect(input).toHaveValue('0');
+});
+
 test('premium input and 3/8 toggle work', async ({ page }) => {
   await page.goto('/policies/3');
-  // spinbutton = the number input; a /premium/i getByLabel also matches a legend-icon svg.
-  await page.getByRole('spinbutton', { name: /premium/i }).fill('800');
+  const input = page.getByRole('spinbutton', { name: /premium/i });
+  await input.fill('800');
   await page.getByRole('button', { name: '8%' }).click();
   // Active segment uses the SegmentedControl's accent style.
   await expect(page.getByRole('button', { name: '8%' })).toHaveClass(/bg-accent/);
