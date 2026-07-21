@@ -46,7 +46,8 @@ const detail = (fees: PolicyAccountFee[]): PolicyDetail => ({
 });
 
 describe('omittedFeeNotes', () => {
-  it('always names the sub-fund / fund-management fees', () => {
+  it('always names COI and sub-fund / fund-management fees', () => {
+    expect(omittedFeeNotes(detail([fee({})]))[0]).toMatch(/COI/i);
     expect(omittedFeeNotes(detail([fee({})]))[0]).toMatch(/sub-fund|management fees/i);
   });
   it('names undisclosed-rate fees', () => {

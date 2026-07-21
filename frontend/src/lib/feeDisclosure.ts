@@ -1,7 +1,9 @@
 import type { PolicyDetail } from '../types/policy';
 
 export function omittedFeeNotes(detail: PolicyDetail): string[] {
-  const notes = ['Excludes any sub-fund maintenance and management fees'];
+  const notes = [
+    'Excludes insurance/mortality charges (COI) and sub-fund/fund-management fees — these reduce real returns.',
+  ];
   const allFees = [
     ...detail.policyAccounts.flatMap((a) => a.policyAccountFees),
     ...detail.policyAccountFees,
