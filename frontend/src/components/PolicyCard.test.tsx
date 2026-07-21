@@ -20,6 +20,7 @@ describe('PolicyCard', () => {
     render(<PolicyCard policy={policy} onClick={() => {}} />);
     expect(screen.getByText('ManuInvest Duo')).toBeInTheDocument();
     expect(screen.getByText('Manulife')).toBeInTheDocument();
+    expect(screen.queryByText(policy.description)).not.toBeInTheDocument();
     expect(screen.getByText('Regular')).toBeInTheDocument();
     expect(screen.getByText('SGD')).toBeInTheDocument();
     expect(screen.getByText('20-year MIP')).toBeInTheDocument();

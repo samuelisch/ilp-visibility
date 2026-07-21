@@ -29,7 +29,6 @@ export function PolicyCard({
       >
         <div className="text-xs tracking-wide text-muted uppercase">{policy.provider.name}</div>
         <div className="font-display text-lg text-ink">{policy.name}</div>
-        <div className="mt-0.5 text-sm text-muted">{policy.description}</div>
         <div className="mt-3 flex flex-wrap gap-2">
           <Pill tone="accent">{formatPremiumType(single)}</Pill>
           <Pill>{formatDomicile(policy.domicile)}</Pill>
