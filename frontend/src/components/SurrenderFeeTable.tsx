@@ -10,6 +10,9 @@ export function SurrenderFeeTable({ rows }: { rows: YearRow[] }) {
   return (
     <div data-testid="surrender-fee-table" className="max-h-[22rem] overflow-y-auto">
       <table className="tnum w-full text-left text-sm">
+        <caption className="sr-only">
+          Full data for the surrender fee versus net value chart, by policy year.
+        </caption>
         <thead>
           <tr className="text-xs tracking-wide text-muted uppercase">
             <th className="sticky top-0 bg-surface py-1 pr-4 font-medium">Year</th>

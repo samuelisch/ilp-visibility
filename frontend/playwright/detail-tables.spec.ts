@@ -15,6 +15,9 @@ test('fee table renders every year in a scroll viewport (no pagination)', async 
     page.getByTestId('fee-year-table').getByRole('button', { name: 'Next' }),
   ).toHaveCount(0);
   await expect(page.getByTestId('fee-year-table')).toContainText('11'); // year 11 already present
+  await expect(
+    page.getByRole('table', { name: /value versus premiums paid chart/i }),
+  ).toBeVisible();
 });
 
 test('surrender table shows the charge-years only', async ({ page }) => {
@@ -22,4 +25,7 @@ test('surrender table shows the charge-years only', async ({ page }) => {
   await expect(page.getByTestId('surrender-fee-table')).toBeVisible();
   // fixture has surrender years 1–5
   await expect(page.getByTestId('surrender-row')).toHaveCount(5);
+  await expect(
+    page.getByRole('table', { name: /surrender fee versus net value chart/i }),
+  ).toBeVisible();
 });
